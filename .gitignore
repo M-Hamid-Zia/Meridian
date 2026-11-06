@@ -1,0 +1,10 @@
+node_modules/
+dist/
+shots/
+.taste-skill/
+image-search/
+.agents/
+.claude/
+agent/
+skills-lock.json
+tsconfig.tsbuildinfo
