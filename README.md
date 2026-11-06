@@ -27,6 +27,7 @@ The dev server binds to `0.0.0.0` and allows the Arena preview host.
 - **Type:** Instrument Serif for headlines, Instrument Sans for body and labels. Headlines 48–88px, body 16–17px, labels 10–11px.
 - **Grid:** 12 columns, 24px gutters, one `.wrap` at 1280px. Splits start on column 7; cards start on column 1.
 - **Motion:** GSAP draws the dotted trade routes once on load and animates the route-result panel on submit. Hover states are CSS-only. `prefers-reduced-motion` shows the finished state and skips the GSAP tweens.
+- **Cursor companion:** a small gold route-desk avatar follows the cursor after the hero on desktop. It plays a short `greet` animation on click and over links, and hides over form fields, the nav and the footer. It is disabled on touch devices and under reduced motion.
 - **Photos:** black-and-white editorial treatment, lazy-loaded, with 700w mobile variants.
 
 ## Page sections
@@ -39,7 +40,7 @@ The dev server binds to `0.0.0.0` and allows the Arena preview host.
 6. **Network** — the second map, with 12 owned offices and 38 partner ports. Hover a pin for the hub name.
 7. **Route desk team** — the 4-hour response promise and two anonymized client voices.
 8. **FAQ** — six objection-handling questions with an accessible accordion.
-9. **Contact** — six-field quote form, route-desk avatar, response promise and a three-step “what happens next” row.
+9. **Contact** — six-field quote form, route-desk avatar, response promise and a three-step “what happens next” row. The same avatar appears as a cursor companion after the hero.
 10. **Footer** — Rotterdam district address, FIATA / IATA / customs broker credentials, registration numbers on request, and the photo credit.
 
 ## Route selector data

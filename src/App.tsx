@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react';
 import Header from './components/Header';
+import CursorAvatar from './components/CursorAvatar';
 import Hero from './components/Hero';
 import ProofBar from './components/ProofBar';
 import RouteSelector from './components/RouteSelector';
@@ -52,6 +53,7 @@ export default function App() {
     <>
       <a className="skip-link" href="#main">Skip to content</a>
       <Header />
+      <CursorAvatar />
       <main id="main">
         <Hero />
         <ProofBar />

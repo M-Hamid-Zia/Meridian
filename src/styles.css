@@ -2759,3 +2759,36 @@ svg {
     transform: none !important;
   }
 }
+
+/* Cursor companion */
+
+.cursor-avatar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 40;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  background: var(--ink);
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.cursor-avatar.is-active.is-visible {
+  opacity: 0.94;
+}
+
+.cursor-avatar.is-hidden {
+  opacity: 0 !important;
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .cursor-avatar {
+    display: none;
+  }
+}
