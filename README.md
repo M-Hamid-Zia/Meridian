@@ -66,13 +66,21 @@ Every effect is gated on `prefers-reduced-motion`: the intro is skipped, Lenis a
 
 ## Avatar
 
-The `@bible-strong/avatar-react` runtime paints into a fixed `-150 … 150` user space, so the avatar definition must be authored in that scale. The previous definition used `~1.5` units and rendered as a near-invisible dot. `src/avatar.json` is now generated:
+The `@bible-strong/avatar-react` runtime has three quirks that are easy to trip over, so `src/avatar.json` is generated and asserted rather than hand-edited:
 
 ```bash
-npm run build:avatar     # scripts/build-avatar.mjs → validates + writes src/avatar.json
+npm run build:avatar     # scripts/build-avatar.mjs → validates → writes src/avatar.json
 ```
 
-The generator validates against the runtime schema, so a broken definition fails the script instead of shipping. Expressions: `neutral`, `focused`, `satisfied`, `look`; animations: `idle` (loop with blinks), `greet`, `think`.
+1. **Scale.** Everything is painted into a fixed `-150 … 150` user space. A definition authored at "1.5 units" renders as an invisible dot.
+2. **`body.primary.width` is not a radius.** The runtime uses a sub-linear curve (`200 → r 103`, `232 → r 122`, `280 → r 150`). Anything above ~270 fills the whole 300-unit box, which flattens the face against the frame and hides the decorative ring. The build script asserts the resolved radius stays in a sane band.
+3. **`eyes.spacing` is an arc length around the head, not a pixel gap.** Low values (~40) stack both eyes in the centre; ~120 places the pair just inside the head edge. Keep `perspective` ≤ 2 or the pair looks skewed.
+
+The runtime draws a body plus exactly two eye shapes — there are no brows, nose or mouth — so the face is deliberately an abstract mark: wide, soft ovals that read as a calm character from 64px to 104px.
+
+Expressions: `neutral`, `focused`, `satisfied`, `look`. Animations: `idle` (loop with blinks), `greet` (plays on hover/focus), `think`.
+
+`MeridianAvatar` also hides the runtime's first frame (a bare gold disc with no eyes) until the eye paths are actually drawn, and under `prefers-reduced-motion` it renders a calm static expression instead of a moving one — it is never blank and never looping.
 
 ## Route selector data
 

@@ -3164,6 +3164,20 @@ body::after {
 .avatar > .bs-avatar {
   position: relative;
   z-index: 1;
+  transition: opacity 0.5s var(--ease), transform 0.7s var(--ease);
+}
+
+/* The first runtime frame is a bare gold disc; hold it back until the face is drawn. */
+.avatar > .bs-avatar {
+  opacity: 0;
+}
+
+.avatar.is-painted > .bs-avatar {
+  opacity: 1;
+}
+
+.avatar:hover > .bs-avatar {
+  transform: scale(1.03);
 }
 
 .avatar__glow {
