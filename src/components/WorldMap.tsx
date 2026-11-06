@@ -130,11 +130,7 @@ export default function WorldMap({ variant = 'hero', className = '' }: Props) {
             <span className="map__overlay-line" />
             <span className="map__overlay-meta">140+ countries</span>
           </div>
-          <div className="map__overlay map__overlay--bottom">
-            <span>12 owned offices</span>
-            <span className="map__overlay-dot" />
-            <span>60+ partner agents</span>
-          </div>
+
         </>
       ) : (
         <div className="map__legend">

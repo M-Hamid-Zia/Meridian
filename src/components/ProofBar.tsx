@@ -8,10 +8,10 @@ const stats = [
 export default function ProofBar() {
   return (
     <section className="proofbar" aria-label="Meridian by the numbers">
-      <div className="wrap proofbar__wrap">
-        {stats.map((stat) => (
-          <div className="proofbar__item" key={stat.label}>
-            <strong>{stat.value}</strong>
+      <div className="proofbar__inner">
+        {stats.map((stat, index) => (
+          <div className="proofbar__item" key={stat.label} data-reveal data-reveal-delay={index * 0.06}>
+            <strong data-count={stat.value}>{stat.value}</strong>
             <span>{stat.label}</span>
           </div>
         ))}

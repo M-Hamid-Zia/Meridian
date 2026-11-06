@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import gsap from 'gsap';
 import { cargoTypes, getLane, regions, type CargoId, type RegionId } from '../data/routes';
 import type { QuotePrefill, RoutePreset } from '../App';
 import { ArrowRight, ModeIcon } from './Icons';
 import MiniRouteMap from './MiniRouteMap';
+import { gsap, prefersReducedMotion } from '../lib/motion';
 
 type Props = {
   preset: RoutePreset | null;
@@ -14,6 +14,7 @@ export default function RouteSelector({ preset, onRequestQuote }: Props) {
   const [origin, setOrigin] = useState<RegionId>(preset?.origin ?? 'europe');
   const [destination, setDestination] = useState<RegionId>(preset?.destination ?? 'north-america');
   const [cargo, setCargo] = useState<CargoId>(preset?.cargo ?? 'general');
+  const [step, setStep] = useState(1);
   const resultRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -26,69 +27,90 @@ export default function RouteSelector({ preset, onRequestQuote }: Props) {
   const lane = useMemo(() => getLane(origin, destination, cargo), [origin, destination, cargo]);
 
   useEffect(() => {
-    if (!resultRef.current) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const tween = gsap.fromTo(resultRef.current, { opacity: 0, y: 8 }, {
-      opacity: 1,
-      y: 0,
-      duration: 0.4,
-      ease: 'power2.out',
-    });
-    return () => {
-      tween.kill();
-    };
+    if (!resultRef.current || prefersReducedMotion()) return;
+    const ctx = gsap.context(() => {
+      gsap.from('.route-option', {
+        opacity: 0,
+        y: 14,
+        duration: 0.6,
+        stagger: 0.07,
+        ease: 'power3.out',
+        overwrite: true,
+      });
+      gsap.from('.route-result__lane > *', {
+        opacity: 0,
+        y: 8,
+        duration: 0.6,
+        stagger: 0.05,
+        ease: 'power3.out',
+        overwrite: true,
+      });
+    }, resultRef);
+    return () => ctx.revert();
   }, [lane]);
 
   const submit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!resultRef.current) return;
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    resultRef.current.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
-    if (reduce) return;
-    gsap.fromTo(resultRef.current, { opacity: 0.35, y: 6 }, {
-      opacity: 1,
-      y: 0,
-      duration: 0.35,
-      ease: 'power2.out',
-    });
+    setStep(3);
+    resultRef.current?.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'center' });
   };
 
   return (
     <section className="section routes" id="routes">
       <div className="wrap">
-        <div className="section-head routes__head">
+        <div className="section-head">
           <div className="section-head__title">
-            <span className="eyebrow">01 / Route selector</span>
-            <h2>Find your trade lane.</h2>
+            <span className="eyebrow" data-reveal>
+              <span className="eyebrow__num">01</span> Route desk
+            </span>
+            <h2 data-reveal data-reveal-delay={0.05}>
+              Find your trade lane<span className="accent">.</span>
+            </h2>
           </div>
-          <div className="section-head__intro">
-            <p>Choose an origin, a destination and the cargo. We will show the modes, transit windows and the specialist who owns the lane.</p>
+          <div className="section-head__intro" data-reveal data-reveal-delay={0.12}>
+            <p>
+              Choose an origin, a destination and the cargo. We show the modes, the transit windows
+              and the specialist who owns the lane.
+            </p>
             <span className="micro-note">Indicative transit times. A specialist confirms the schedule.</span>
           </div>
         </div>
 
-        <div className="routes-photo">
+        <div className="routes__media" data-reveal="mask">
           <img
             src="/images/route-port.webp"
-            alt="Container cranes and cargo ships at a deep-water port"
+            alt="Container cranes at a deep-water port at dusk"
             width="1200"
             height="400"
             loading="lazy"
             decoding="async"
           />
+          <span className="routes__media-tag">Rotterdam · 51.9° N, 4.5° E</span>
         </div>
 
-        <form className="route-panel" onSubmit={submit}>
+        <form className="route-panel" onSubmit={submit} data-reveal data-reveal-delay={0.06}>
           <div className="route-panel__bar">
-            <span className="label label--gold">Route selector</span>
-            <span className="route-panel__step">01 / 03</span>
+            <span className="label label--dark">Lane calculator</span>
+            <span className="route-panel__steps" aria-hidden="true">
+              {[1, 2, 3].map((n) => (
+                <span key={n} className={`route-panel__step${step >= n ? ' is-on' : ''}`}>
+                  0{n}
+                </span>
+              ))}
+            </span>
           </div>
 
           <div className="route-panel__fields">
             <label className="field">
-              <span className="field__label">Where is it going?</span>
+              <span className="field__label">Origin</span>
               <span className="select-wrap">
-                <select value={origin} onChange={(event) => setOrigin(event.target.value as RegionId)}>
+                <select
+                  value={origin}
+                  onChange={(event) => {
+                    setOrigin(event.target.value as RegionId);
+                    setStep(2);
+                  }}
+                >
                   {regions.map((region) => (
                     <option key={region.id} value={region.id}>{region.label}</option>
                   ))}
@@ -100,9 +122,15 @@ export default function RouteSelector({ preset, onRequestQuote }: Props) {
             <span className="route-panel__arrow" aria-hidden="true">→</span>
 
             <label className="field">
-              <span className="field__label">Destination region</span>
+              <span className="field__label">Destination</span>
               <span className="select-wrap">
-                <select value={destination} onChange={(event) => setDestination(event.target.value as RegionId)}>
+                <select
+                  value={destination}
+                  onChange={(event) => {
+                    setDestination(event.target.value as RegionId);
+                    setStep(2);
+                  }}
+                >
                   {regions.map((region) => (
                     <option key={region.id} value={region.id}>{region.label}</option>
                   ))}
@@ -112,19 +140,25 @@ export default function RouteSelector({ preset, onRequestQuote }: Props) {
             </label>
 
             <label className="field">
-              <span className="field__label">Cargo type</span>
+              <span className="field__label">Cargo</span>
               <span className="select-wrap">
-                <select value={cargo} onChange={(event) => setCargo(event.target.value as CargoId)}>
+                <select
+                  value={cargo}
+                  onChange={(event) => {
+                    setCargo(event.target.value as CargoId);
+                    setStep(2);
+                  }}
+                >
                   {cargoTypes.map((type) => (
                     <option key={type.id} value={type.id}>{type.label}</option>
                   ))}
                 </select>
               </span>
-              <span className="field__hint">Equipment and handling are confirmed by the route desk.</span>
+              <span className="field__hint">Equipment and handling confirmed by the desk.</span>
             </label>
 
             <button className="btn btn--primary route-panel__submit" type="submit">
-              See your route options
+              Show options
               <ArrowRight className="btn__arrow" />
             </button>
           </div>
@@ -169,12 +203,14 @@ export default function RouteSelector({ preset, onRequestQuote }: Props) {
               <button
                 className="btn btn--primary"
                 type="button"
-                onClick={() => onRequestQuote({
-                  origin: lane.origin.label,
-                  destination: lane.destination.label,
-                  cargo: lane.cargo.label,
-                  note: `${lane.laneLabel} · ${lane.recommended.mode} · ${lane.recommended.transit}`,
-                })}
+                onClick={() =>
+                  onRequestQuote({
+                    origin: lane.origin.label,
+                    destination: lane.destination.label,
+                    cargo: lane.cargo.label,
+                    note: `${lane.laneLabel} · ${lane.recommended.mode} · ${lane.recommended.transit}`,
+                  })
+                }
               >
                 Talk to a specialist
                 <ArrowRight className="btn__arrow" />

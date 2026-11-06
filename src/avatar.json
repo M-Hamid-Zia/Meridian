@@ -5,32 +5,12 @@
   "body": {
     "primary": {
       "type": "sphere",
-      "width": 1.55,
-      "height": 1.55,
-      "depth": 1.55,
+      "width": 249,
+      "height": 249,
+      "depth": 249,
       "roundness": 1
     },
-    "nodes": [
-      {
-        "surface": {
-          "type": "diamond",
-          "width": 0.22,
-          "height": 0.22,
-          "depth": 0.22,
-          "roundness": 0.1
-        },
-        "position": [
-          0.78,
-          0.72,
-          0.1
-        ],
-        "rotation": [
-          0,
-          0,
-          45
-        ]
-      }
-    ]
+    "nodes": []
   },
   "colors": {
     "body": "#c8a24a",
@@ -45,20 +25,20 @@
       },
       "eyes": {
         "left": {
-          "width": 0.15,
-          "height": 0.15,
-          "x": -0.28,
-          "y": 0.08,
+          "width": 34,
+          "height": 32,
+          "x": -3,
+          "y": -14,
           "angle": 0
         },
         "right": {
-          "width": 0.15,
-          "height": 0.15,
-          "x": 0.28,
-          "y": 0.08,
+          "width": 34,
+          "height": 32,
+          "x": 3,
+          "y": -14,
           "angle": 0
         },
-        "spacing": 0.56
+        "spacing": 46
       },
       "perspective": 3.2,
       "motion": {
@@ -69,25 +49,25 @@
     "focused": {
       "head": {
         "x": 0,
-        "y": -0.04,
-        "z": 0.02
+        "y": 6,
+        "z": 0
       },
       "eyes": {
         "left": {
-          "width": 0.16,
-          "height": 0.1,
-          "x": -0.28,
-          "y": 0.08,
-          "angle": -4
+          "width": 36,
+          "height": 18,
+          "x": -3,
+          "y": -12,
+          "angle": -7
         },
         "right": {
-          "width": 0.16,
-          "height": 0.1,
-          "x": 0.28,
-          "y": 0.08,
-          "angle": 4
+          "width": 36,
+          "height": 18,
+          "x": 3,
+          "y": -12,
+          "angle": 7
         },
-        "spacing": 0.56
+        "spacing": 46
       },
       "perspective": 3.2,
       "motion": {
@@ -98,37 +78,67 @@
     "satisfied": {
       "head": {
         "x": 0,
-        "y": 0.03,
+        "y": -5,
         "z": 0
       },
       "eyes": {
         "left": {
-          "width": 0.17,
-          "height": 0.08,
-          "x": -0.28,
-          "y": 0.1,
-          "angle": 8
+          "width": 34,
+          "height": 15,
+          "x": -3,
+          "y": -12,
+          "angle": 12
         },
         "right": {
-          "width": 0.17,
-          "height": 0.08,
-          "x": 0.28,
-          "y": 0.1,
-          "angle": -8
+          "width": 34,
+          "height": 15,
+          "x": 3,
+          "y": -12,
+          "angle": -12
         },
-        "spacing": 0.56
+        "spacing": 46
       },
       "perspective": 3.2,
       "motion": {
         "eyes": "none",
         "body": "slowDrift"
       }
+    },
+    "look": {
+      "head": {
+        "x": 10,
+        "y": 0,
+        "z": 0
+      },
+      "eyes": {
+        "left": {
+          "width": 32,
+          "height": 30,
+          "x": -3,
+          "y": -14,
+          "angle": -8
+        },
+        "right": {
+          "width": 32,
+          "height": 30,
+          "x": 3,
+          "y": -14,
+          "angle": -8
+        },
+        "spacing": 46
+      },
+      "perspective": 3.2,
+      "motion": {
+        "eyes": "none",
+        "body": "none"
+      }
     }
   },
   "expressionOrder": [
     "neutral",
     "focused",
-    "satisfied"
+    "satisfied",
+    "look"
   ],
   "animations": {
     "idle": {
@@ -136,49 +146,79 @@
       "steps": [
         {
           "expression": "neutral",
-          "holdMs": 2200,
+          "holdMs": 2400,
           "transitionMs": 600,
+          "transition": "smooth"
+        },
+        {
+          "expression": "look",
+          "holdMs": 1100,
+          "transitionMs": 520,
+          "transition": "smooth"
+        },
+        {
+          "expression": "neutral",
+          "holdMs": 1700,
+          "transitionMs": 520,
           "transition": "smooth"
         },
         {
           "expression": "focused",
           "holdMs": 900,
-          "transitionMs": 400,
-          "transition": "smooth"
-        },
-        {
-          "expression": "neutral",
-          "holdMs": 1600,
-          "transitionMs": 500,
+          "transitionMs": 420,
           "transition": "smooth"
         },
         {
           "expression": "satisfied",
-          "holdMs": 700,
-          "transitionMs": 400,
+          "holdMs": 800,
+          "transitionMs": 460,
           "transition": "smooth"
         }
       ],
       "blink": {
         "enabled": true,
-        "initialDelayMs": 1200,
-        "minIntervalMs": 2600,
-        "maxIntervalMs": 5200,
-        "durationMs": 160
+        "initialDelayMs": 1400,
+        "minIntervalMs": 2800,
+        "maxIntervalMs": 5600,
+        "durationMs": 150
       }
     },
     "greet": {
       "playbackMode": "once",
       "steps": [
         {
-          "expression": "focused",
-          "holdMs": 260,
-          "transitionMs": 140,
+          "expression": "satisfied",
+          "holdMs": 500,
+          "transitionMs": 200,
           "transition": "snappy"
         },
         {
-          "expression": "satisfied",
-          "holdMs": 480,
+          "expression": "neutral",
+          "holdMs": 420,
+          "transitionMs": 280,
+          "transition": "smooth"
+        }
+      ],
+      "blink": {
+        "enabled": true,
+        "initialDelayMs": 900,
+        "minIntervalMs": 2800,
+        "maxIntervalMs": 5600,
+        "durationMs": 150
+      }
+    },
+    "think": {
+      "playbackMode": "once",
+      "steps": [
+        {
+          "expression": "focused",
+          "holdMs": 700,
+          "transitionMs": 200,
+          "transition": "snappy"
+        },
+        {
+          "expression": "look",
+          "holdMs": 640,
           "transitionMs": 220,
           "transition": "smooth"
         },
@@ -191,15 +231,16 @@
       ],
       "blink": {
         "enabled": true,
-        "initialDelayMs": 800,
-        "minIntervalMs": 2400,
-        "maxIntervalMs": 4800,
+        "initialDelayMs": 900,
+        "minIntervalMs": 2800,
+        "maxIntervalMs": 5600,
         "durationMs": 150
       }
     }
   },
   "animationOrder": [
     "idle",
-    "greet"
+    "greet",
+    "think"
   ]
 }
