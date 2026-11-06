@@ -5,32 +5,12 @@
   "body": {
     "primary": {
       "type": "sphere",
-      "width": 1.55,
-      "height": 1.55,
-      "depth": 1.55,
+      "width": 232,
+      "height": 232,
+      "depth": 232,
       "roundness": 1
     },
-    "nodes": [
-      {
-        "surface": {
-          "type": "diamond",
-          "width": 0.22,
-          "height": 0.22,
-          "depth": 0.22,
-          "roundness": 0.1
-        },
-        "position": [
-          0.78,
-          0.72,
-          0.1
-        ],
-        "rotation": [
-          0,
-          0,
-          45
-        ]
-      }
-    ]
+    "nodes": []
   },
   "colors": {
     "body": "#c8a24a",
@@ -45,22 +25,22 @@
       },
       "eyes": {
         "left": {
-          "width": 0.15,
-          "height": 0.15,
-          "x": -0.28,
-          "y": 0.08,
+          "width": 48,
+          "height": 54,
+          "x": -1,
+          "y": -22,
           "angle": 0
         },
         "right": {
-          "width": 0.15,
-          "height": 0.15,
-          "x": 0.28,
-          "y": 0.08,
+          "width": 48,
+          "height": 54,
+          "x": 1,
+          "y": -22,
           "angle": 0
         },
-        "spacing": 0.56
+        "spacing": 120
       },
-      "perspective": 3.2,
+      "perspective": 1.6,
       "motion": {
         "eyes": "microSaccades",
         "body": "slowDrift"
@@ -69,27 +49,27 @@
     "focused": {
       "head": {
         "x": 0,
-        "y": -0.04,
-        "z": 0.02
+        "y": 6,
+        "z": 0
       },
       "eyes": {
         "left": {
-          "width": 0.16,
-          "height": 0.1,
-          "x": -0.28,
-          "y": 0.08,
-          "angle": -4
+          "width": 50,
+          "height": 28,
+          "x": -1,
+          "y": -20,
+          "angle": 0
         },
         "right": {
-          "width": 0.16,
-          "height": 0.1,
-          "x": 0.28,
-          "y": 0.08,
-          "angle": 4
+          "width": 50,
+          "height": 28,
+          "x": 1,
+          "y": -20,
+          "angle": 0
         },
-        "spacing": 0.56
+        "spacing": 120
       },
-      "perspective": 3.2,
+      "perspective": 1.6,
       "motion": {
         "eyes": "none",
         "body": "none"
@@ -98,37 +78,67 @@
     "satisfied": {
       "head": {
         "x": 0,
-        "y": 0.03,
+        "y": -6,
         "z": 0
       },
       "eyes": {
         "left": {
-          "width": 0.17,
-          "height": 0.08,
-          "x": -0.28,
-          "y": 0.1,
-          "angle": 8
+          "width": 46,
+          "height": 26,
+          "x": -1,
+          "y": -20,
+          "angle": 0
         },
         "right": {
-          "width": 0.17,
-          "height": 0.08,
-          "x": 0.28,
-          "y": 0.1,
-          "angle": -8
+          "width": 46,
+          "height": 26,
+          "x": 1,
+          "y": -20,
+          "angle": 0
         },
-        "spacing": 0.56
+        "spacing": 120
       },
-      "perspective": 3.2,
+      "perspective": 1.6,
       "motion": {
         "eyes": "none",
-        "body": "slowDrift"
+        "body": "none"
+      }
+    },
+    "look": {
+      "head": {
+        "x": 8,
+        "y": 0,
+        "z": 0
+      },
+      "eyes": {
+        "left": {
+          "width": 44,
+          "height": 50,
+          "x": -1,
+          "y": -22,
+          "angle": -7
+        },
+        "right": {
+          "width": 44,
+          "height": 50,
+          "x": 1,
+          "y": -22,
+          "angle": -7
+        },
+        "spacing": 120
+      },
+      "perspective": 1.6,
+      "motion": {
+        "eyes": "none",
+        "body": "none"
       }
     }
   },
   "expressionOrder": [
     "neutral",
     "focused",
-    "satisfied"
+    "satisfied",
+    "look"
   ],
   "animations": {
     "idle": {
@@ -136,70 +146,95 @@
       "steps": [
         {
           "expression": "neutral",
-          "holdMs": 2200,
-          "transitionMs": 600,
+          "holdMs": 2600,
+          "transitionMs": 620,
           "transition": "smooth"
         },
         {
-          "expression": "focused",
-          "holdMs": 900,
-          "transitionMs": 400,
+          "expression": "look",
+          "holdMs": 1100,
+          "transitionMs": 520,
           "transition": "smooth"
         },
         {
           "expression": "neutral",
-          "holdMs": 1600,
-          "transitionMs": 500,
+          "holdMs": 1800,
+          "transitionMs": 520,
           "transition": "smooth"
         },
         {
           "expression": "satisfied",
-          "holdMs": 700,
-          "transitionMs": 400,
+          "holdMs": 780,
+          "transitionMs": 460,
           "transition": "smooth"
         }
       ],
       "blink": {
         "enabled": true,
-        "initialDelayMs": 1200,
-        "minIntervalMs": 2600,
-        "maxIntervalMs": 5200,
-        "durationMs": 160
+        "initialDelayMs": 1500,
+        "minIntervalMs": 3000,
+        "maxIntervalMs": 6200,
+        "durationMs": 150
       }
     },
     "greet": {
       "playbackMode": "once",
       "steps": [
         {
-          "expression": "focused",
-          "holdMs": 260,
-          "transitionMs": 140,
+          "expression": "satisfied",
+          "holdMs": 520,
+          "transitionMs": 220,
           "transition": "snappy"
         },
         {
-          "expression": "satisfied",
-          "holdMs": 480,
-          "transitionMs": 220,
-          "transition": "smooth"
-        },
-        {
           "expression": "neutral",
-          "holdMs": 320,
-          "transitionMs": 260,
+          "holdMs": 420,
+          "transitionMs": 300,
           "transition": "smooth"
         }
       ],
       "blink": {
         "enabled": true,
         "initialDelayMs": 800,
-        "minIntervalMs": 2400,
-        "maxIntervalMs": 4800,
+        "minIntervalMs": 3000,
+        "maxIntervalMs": 6200,
+        "durationMs": 150
+      }
+    },
+    "think": {
+      "playbackMode": "once",
+      "steps": [
+        {
+          "expression": "focused",
+          "holdMs": 700,
+          "transitionMs": 220,
+          "transition": "snappy"
+        },
+        {
+          "expression": "look",
+          "holdMs": 620,
+          "transitionMs": 240,
+          "transition": "smooth"
+        },
+        {
+          "expression": "neutral",
+          "holdMs": 320,
+          "transitionMs": 280,
+          "transition": "smooth"
+        }
+      ],
+      "blink": {
+        "enabled": true,
+        "initialDelayMs": 800,
+        "minIntervalMs": 3000,
+        "maxIntervalMs": 6200,
         "durationMs": 150
       }
     }
   },
   "animationOrder": [
     "idle",
-    "greet"
+    "greet",
+    "think"
   ]
 }

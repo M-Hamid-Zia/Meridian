@@ -3,6 +3,7 @@ import type { QuotePrefill } from '../App';
 import { cargoTypes } from '../data/routes';
 import { ArrowRight } from './Icons';
 import MeridianAvatar from './MeridianAvatar';
+import { gsap, prefersReducedMotion } from '../lib/motion';
 
 type Props = {
   prefill: QuotePrefill | null;
@@ -41,6 +42,12 @@ export default function Contact({ prefill }: Props) {
       cargo: prefill.cargo ?? current.cargo,
     }));
     noteRef.current = prefill.note ?? '';
+    if (!formRef.current || prefersReducedMotion()) return;
+    gsap.fromTo(
+      formRef.current.querySelectorAll('.field--dark, .quote-form__submit'),
+      { boxShadow: '0 0 0 1px rgba(200,162,74,0)' },
+      { boxShadow: '0 0 0 1px rgba(200,162,74,0.9)', duration: 0.5, stagger: 0.05, yoyo: true, repeat: 1 },
+    );
   }, [prefill]);
 
   const update = (key: keyof FormState, value: string) => {
@@ -65,23 +72,46 @@ export default function Contact({ prefill }: Props) {
       noteRef.current ? `Lane note: ${noteRef.current}` : '',
       '',
       'Please confirm the transit options and the next sailing.',
-    ].filter(Boolean).join('\n');
+    ]
+      .filter(Boolean)
+      .join('\n');
     setStatus('Opening your email app with the request.');
     window.location.href = `mailto:hello@meridian.example?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
 
   return (
-    <section className="section contact" id="contact">
-      <div className="wrap">
+    <section className="contact" id="contact">
+      <div className="wrap contact__inner">
+        <div className="contact__top">
+          <span className="eyebrow eyebrow--light" data-reveal>
+            <span className="eyebrow__num">07</span> Request a quote
+          </span>
+          <h2 data-reveal data-reveal-delay={0.05}>
+            Tell us the route.
+            <br />
+            <em>We&rsquo;ll tell you the plan.</em>
+          </h2>
+          <p className="contact__lead" data-reveal data-reveal-delay={0.1}>
+            Six fields. One business day. A named specialist who knows the lane, the equipment and the
+            customs route.
+          </p>
+        </div>
+
         <div className="contact__grid">
           <div className="contact__copy">
-            <span className="eyebrow eyebrow--light">07 / Request a quote</span>
-            <h2>Tell us the route. We’ll tell you the plan.</h2>
-            <p className="contact__lead">
-              Six fields. One business day. A named specialist who knows the lane, the equipment and the customs route.
-            </p>
+            <div className="route-desk" data-reveal>
+              <MeridianAvatar size={104} className="avatar--lg" />
+              <div className="route-desk__copy">
+                <span className="label label--gold">Route desk · Rotterdam</span>
+                <p>
+                  &ldquo;Send the lane and the document pack. I&rsquo;ll come back with capacity, the
+                  customs route and the accessorials — in writing.&rdquo;
+                </p>
+                <span className="route-desk__sign">— Named specialist, 4h response</span>
+              </div>
+            </div>
 
-            <div className="contact__details">
+            <div className="contact__details" data-reveal data-reveal-delay={0.08}>
               <div>
                 <span className="label">Office</span>
                 <p>Waalhaven, Rotterdam</p>
@@ -94,18 +124,14 @@ export default function Contact({ prefill }: Props) {
                 <span className="label">Response</span>
                 <p>Within one business day</p>
               </div>
-            </div>
-
-            <div className="route-desk card">
-              <MeridianAvatar size={64} />
               <div>
-                <span className="label label--gold">Route desk</span>
-                <p>A named specialist replies within one business day. No ticket queue, no chatbot.</p>
+                <span className="label">Direct</span>
+                <p>hello@meridian.example</p>
               </div>
             </div>
           </div>
 
-          <form className="quote-form" ref={formRef} onSubmit={submit}>
+          <form className="quote-form" ref={formRef} onSubmit={submit} data-reveal="fade" data-reveal-delay={0.12}>
             <div className="quote-form__bar">
               <span className="label label--gold">Quote request</span>
               <span className="quote-form__step">01 / 01</span>
@@ -170,11 +196,7 @@ export default function Contact({ prefill }: Props) {
               <label className="field field--dark field--full">
                 <span className="field__label">Cargo type</span>
                 <span className="select-wrap select-wrap--dark">
-                  <select
-                    name="cargo"
-                    value={form.cargo}
-                    onChange={(event) => update('cargo', event.target.value)}
-                  >
+                  <select name="cargo" value={form.cargo} onChange={(event) => update('cargo', event.target.value)}>
                     {cargoTypes.map((type) => (
                       <option key={type.id} value={type.label}>{type.label}</option>
                     ))}
@@ -184,7 +206,7 @@ export default function Contact({ prefill }: Props) {
             </div>
 
             <button className="btn btn--primary btn--block quote-form__submit" type="submit">
-              Request a Quote
+              Request a quote
               <ArrowRight className="btn__arrow" />
             </button>
             <p className="quote-form__note">A specialist responds within one business day.</p>
