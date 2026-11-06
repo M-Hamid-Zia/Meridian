@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { gsap, prefersReducedMotion, ScrollTrigger } from '../lib/motion';
 
 /**
@@ -7,12 +7,9 @@ import { gsap, prefersReducedMotion, ScrollTrigger } from '../lib/motion';
  * data-reveal="mask" wraps the element in a clipping band for image reveals.
  */
 export function useReveal() {
-  const done = useRef(false);
-
   useEffect(() => {
-    if (done.current) return;
-    done.current = true;
-
+    // No one-shot guard here: under React StrictMode the effect runs twice, and
+    // the cleanup has to be allowed to revert so the second run can re-register.
     if (prefersReducedMotion()) {
       gsap.set('[data-reveal], [data-line]', { clearProps: 'all' });
       return;
@@ -76,14 +73,16 @@ export function useReveal() {
         const target = Number(value);
         const decimals = value.includes('.') ? value.split('.')[1].length : 0;
         const obj = { v: 0 };
+        const print = () => {
+          el.textContent = `${prefix}${obj.v.toFixed(decimals)}${suffix}`;
+        };
         gsap.to(obj, {
           v: target,
           duration: 1.6,
           ease: 'power2.out',
           scrollTrigger: { trigger: el, start: 'top 92%', once: true },
-          onUpdate: () => {
-            el.textContent = `${prefix}${obj.v.toFixed(decimals)}${suffix}`;
-          },
+          onUpdate: print,
+          onComplete: print,
         });
       });
 
