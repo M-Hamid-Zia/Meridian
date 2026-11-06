@@ -21,6 +21,8 @@ npm run preview
 
 The dev server binds to `0.0.0.0` and allows the Arena preview host.
 
+The dependency tree is platform-agnostic. Linux-only test and imaging packages were removed; the platform-specific Vite/Rollup binaries are optional dependencies that npm resolves for the host OS.
+
 ## Design system
 
 - **Palette:** flat midnight `#0b0b0c`, warm paper `#f4f1ea`, gold `#c8a24a`, ink `#0b0b0c`. No gradients, glass, glows or shadows.
