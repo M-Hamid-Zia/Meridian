@@ -1,0 +1,83 @@
+{
+  "schema": "bible-strong/avatar-definition",
+  "schemaVersion": 1,
+  "name": "Meridian Route Desk",
+  "body": {
+    "primary": {
+      "type": "sphere",
+      "width": 1.55,
+      "height": 1.55,
+      "depth": 1.55,
+      "roundness": 1
+    },
+    "nodes": [
+      {
+        "surface": {
+          "type": "diamond",
+          "width": 0.22,
+          "height": 0.22,
+          "depth": 0.22,
+          "roundness": 0.1
+        },
+        "position": [0.78, 0.72, 0.1],
+        "rotation": [0, 0, 45]
+      }
+    ]
+  },
+  "colors": {
+    "body": "#c8a24a",
+    "eyes": "#0b0b0c"
+  },
+  "expressions": {
+    "neutral": {
+      "head": { "x": 0, "y": 0, "z": 0 },
+      "eyes": {
+        "left": { "width": 0.15, "height": 0.15, "x": -0.28, "y": 0.08, "angle": 0 },
+        "right": { "width": 0.15, "height": 0.15, "x": 0.28, "y": 0.08, "angle": 0 },
+        "spacing": 0.56
+      },
+      "perspective": 3.2,
+      "motion": { "eyes": "microSaccades", "body": "slowDrift" }
+    },
+    "focused": {
+      "head": { "x": 0, "y": -0.04, "z": 0.02 },
+      "eyes": {
+        "left": { "width": 0.16, "height": 0.1, "x": -0.28, "y": 0.08, "angle": -4 },
+        "right": { "width": 0.16, "height": 0.1, "x": 0.28, "y": 0.08, "angle": 4 },
+        "spacing": 0.56
+      },
+      "perspective": 3.2,
+      "motion": { "eyes": "none", "body": "none" }
+    },
+    "satisfied": {
+      "head": { "x": 0, "y": 0.03, "z": 0 },
+      "eyes": {
+        "left": { "width": 0.17, "height": 0.08, "x": -0.28, "y": 0.1, "angle": 8 },
+        "right": { "width": 0.17, "height": 0.08, "x": 0.28, "y": 0.1, "angle": -8 },
+        "spacing": 0.56
+      },
+      "perspective": 3.2,
+      "motion": { "eyes": "none", "body": "slowDrift" }
+    }
+  },
+  "expressionOrder": ["neutral", "focused", "satisfied"],
+  "animations": {
+    "idle": {
+      "playbackMode": "loop",
+      "steps": [
+        { "expression": "neutral", "holdMs": 2200, "transitionMs": 600, "transition": "smooth" },
+        { "expression": "focused", "holdMs": 900, "transitionMs": 400, "transition": "smooth" },
+        { "expression": "neutral", "holdMs": 1600, "transitionMs": 500, "transition": "smooth" },
+        { "expression": "satisfied", "holdMs": 700, "transitionMs": 400, "transition": "smooth" }
+      ],
+      "blink": {
+        "enabled": true,
+        "initialDelayMs": 1200,
+        "minIntervalMs": 2600,
+        "maxIntervalMs": 5200,
+        "durationMs": 160
+      }
+    }
+  },
+  "animationOrder": ["idle"]
+}
