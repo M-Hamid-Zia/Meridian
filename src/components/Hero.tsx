@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { gsap, prefersReducedMotion, scrollToId } from '../lib/motion';
+import { gsap, prefersReducedMotion, transitionToId } from '../lib/motion';
 import WorldMap from './WorldMap';
 import { ArrowRight } from './Icons';
 
@@ -98,11 +98,11 @@ export default function Hero() {
                 under one accountable partner.
               </p>
               <div className="hero__actions">
-                <button className="btn btn--primary" type="button" onClick={() => scrollToId('contact')}>
+                <button className="btn btn--primary" type="button" onClick={() => transitionToId('contact')}>
                   Request a quote
                   <ArrowRight className="btn__arrow" />
                 </button>
-                <button className="btn btn--ghost" type="button" onClick={() => scrollToId('routes')}>
+                <button className="btn btn--ghost" type="button" onClick={() => transitionToId('routes')}>
                   Open the route desk
                   <ArrowRight className="btn__arrow" />
                 </button>
@@ -138,7 +138,7 @@ export default function Hero() {
             <span className="hero__note">Client names available under NDA.</span>
           </div>
 
-          <button className="hero__scroll" type="button" onClick={() => scrollToId('routes')} aria-label="Scroll to the route desk">
+          <button className="hero__scroll" type="button" onClick={() => transitionToId('routes')} aria-label="Scroll to the route desk">
             <span>Scroll</span>
             <span className="hero__scroll-line" />
           </button>

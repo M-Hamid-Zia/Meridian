@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, CloseIcon, MenuIcon, MeridianMark } from './Icons';
-import { scrollToId } from '../lib/motion';
+import { transitionToId } from '../lib/motion';
 
 const links = [
   { href: 'routes', label: 'Route desk', num: '01' },
@@ -56,7 +56,7 @@ export default function Header() {
   const go = (id: string) => (event: React.MouseEvent) => {
     event.preventDefault();
     setOpen(false);
-    window.setTimeout(() => scrollToId(id), open ? 260 : 0);
+    window.setTimeout(() => (id === 'top' ? window.__meridianScrollTop?.() : transitionToId(id)), open ? 300 : 0);
   };
 
   return (

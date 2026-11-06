@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import Header from './components/Header';
 import Cursor from './components/Cursor';
+import CurveSwipe from './components/CurveSwipe';
 import Hero from './components/Hero';
 import Marquee from './components/Marquee';
 import ProofBar from './components/ProofBar';
@@ -16,7 +17,7 @@ import Intro from './components/Intro';
 import type { CargoId, RegionId } from './data/routes';
 import { useReveal } from './hooks/useReveal';
 import { useMagnetic } from './hooks/useMagnetic';
-import { gsap, prefersReducedMotion, startSmoothScroll } from './lib/motion';
+import { gsap, prefersReducedMotion, startSmoothScroll, transitionToId } from './lib/motion';
 
 export type QuotePrefill = {
   origin?: string;
@@ -68,15 +69,12 @@ export default function App() {
 
   const requestQuote = useCallback((prefill: Omit<QuotePrefill, 'nonce'>) => {
     setQuotePrefill({ ...prefill, nonce: Date.now() });
-    window.setTimeout(() => {
-      const el = document.getElementById('contact');
-      el?.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' });
-    }, 60);
+    window.setTimeout(() => transitionToId('contact'), 40);
   }, []);
 
   const selectService = useCallback((cargo: CargoId) => {
     setRoutePreset({ cargo, nonce: Date.now() });
-    document.getElementById('routes')?.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' });
+    transitionToId('routes');
   }, []);
 
   return (
@@ -84,6 +82,7 @@ export default function App() {
       <a className="skip-link" href="#main">Skip to content</a>
       {!introDone && <Intro onDone={() => setIntroDone(true)} />}
       <Cursor />
+      <CurveSwipe />
       <Header />
       <main id="main">
         <Hero />

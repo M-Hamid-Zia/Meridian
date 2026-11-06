@@ -1,5 +1,5 @@
 import { MeridianMark } from './Icons';
-import { scrollToId } from '../lib/motion';
+import { transitionToId } from '../lib/motion';
 
 const columns = [
   {
@@ -25,7 +25,8 @@ const columns = [
 export default function Footer() {
   const go = (id: string) => (event: React.MouseEvent) => {
     event.preventDefault();
-    scrollToId(id);
+    if (id === 'top') window.__meridianScrollTop?.();
+    else transitionToId(id);
   };
 
   return (

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { ports } from '../data/mapData';
 import WorldMap from './WorldMap';
-import { gsap, prefersReducedMotion, ScrollTrigger, scrollToId } from '../lib/motion';
+import { gsap, prefersReducedMotion, ScrollTrigger, transitionToId } from '../lib/motion';
 import { ArrowRight } from './Icons';
 
 const offices = ports.filter((port) => port.type === 'office');
@@ -85,7 +85,7 @@ export default function Network() {
                 We do not hand a shipment to a stranger at the other end. The partner agent works to
                 our document and our escalation path.
               </p>
-              <button className="btn btn--primary" type="button" onClick={() => scrollToId('contact')} data-cursor="link">
+              <button className="btn btn--primary" type="button" onClick={() => transitionToId('contact')} data-cursor="link">
                 Request a quote
                 <ArrowRight className="btn__arrow" />
               </button>
