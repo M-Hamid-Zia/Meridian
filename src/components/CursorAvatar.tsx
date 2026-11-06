@@ -88,7 +88,9 @@ export default function CursorAvatar() {
       current.current.x += (target.current.x - current.current.x) * 0.16;
       current.current.y += (target.current.y - current.current.y) * 0.16;
       if (containerRef.current) {
-        containerRef.current.style.transform = `translate3d(${current.current.x + 18}px, ${current.current.y + 18}px, 0)`;
+        const x = Math.max(8, Math.min(current.current.x + 18, window.innerWidth - 62));
+        const y = Math.max(8, Math.min(current.current.y + 18, window.innerHeight - 62));
+        containerRef.current.style.transform = `translate3d(${x}px, ${y}px, 0)`;
       }
       frameRef.current = requestAnimationFrame(tick);
     };
