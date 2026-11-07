@@ -3,9 +3,9 @@ import { ArrowRight, CloseIcon, MenuIcon, MeridianMark } from './Icons';
 import { transitionToId } from '../lib/motion';
 
 const links = [
-  { href: 'services', label: 'Services', num: '01' },
-  { href: 'network', label: 'Network', num: '02' },
-  { href: 'contact', label: 'Contact', num: '03' },
+  { href: 'services', label: 'Services' },
+  { href: 'network', label: 'Network' },
+  { href: 'contact', label: 'Contact' },
 ];
 
 export default function Header() {
@@ -82,7 +82,6 @@ export default function Header() {
           </nav>
 
           <div className="nav__actions">
-            <a className="nav__tel" href="tel:+3110000000">+31 10 000 000</a>
             <a className="btn btn--outline-gold nav__cta" href="#contact" onClick={go('contact')}>
               <span>Request a quote</span>
               <ArrowRight className="btn__arrow" />
@@ -121,7 +120,6 @@ export default function Header() {
           <nav className="menu__links" aria-label="Site">
             {links.map((link) => (
               <a key={link.href} href={`#${link.href}`} onClick={go(link.href)} tabIndex={open ? 0 : -1}>
-                <span className="menu__num">{link.num}</span>
                 <span className="menu__label">{link.label}</span>
                 <ArrowRight className="menu__arrow" />
               </a>

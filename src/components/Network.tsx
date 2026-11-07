@@ -29,9 +29,9 @@ export default function Network() {
 
     const mm = gsap.matchMedia();
 
-    // Pinned scrub on every screen (reduced motion falls back to the swipe rail).
+    // Pinned scrub from tablet-wide up; below that the CSS switches the rail to native swipe.
     if (!prefersReducedMotion()) {
-      mm.add('(min-width: 0px)', () => {
+      mm.add('(min-width: 940px)', () => {
         const getDistance = () => Math.max(0, track.scrollWidth - window.innerWidth + 64);
 
         const tween = gsap.to(track, {
@@ -52,13 +52,14 @@ export default function Network() {
         return () => {
           tween.scrollTrigger?.kill();
           tween.kill();
+          gsap.set(track, { clearProps: 'transform' });
           ScrollTrigger.refresh();
         };
       });
     }
 
-    // Native swipe rail: small screens, and reduced motion at any width.
-    mm.add('(prefers-reduced-motion: reduce)', () => {
+    // Native swipe rail: small screens at any motion setting, and reduced motion at any width.
+    mm.add('(prefers-reduced-motion: reduce) or (max-width: 939px)', () => {
       const onScroll = () => {
         const max = viewport.scrollWidth - viewport.clientWidth;
         paint(max > 0 ? viewport.scrollLeft / max : 1);
