@@ -1,12 +1,8 @@
 import { useState } from 'react';
-import type { QuotePrefill } from '../App';
 import { ArrowRight } from './Icons';
+import { transitionToId } from '../lib/motion';
 
-type Props = {
-  onRequestQuote: (prefill: Omit<QuotePrefill, 'nonce'>) => void;
-};
-
-export default function CaseStudy({ onRequestQuote }: Props) {
+export default function CaseStudy() {
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -17,41 +13,23 @@ export default function CaseStudy({ onRequestQuote }: Props) {
             <span className="eyebrow__num">03</span> Case study
           </span>
           <h2 data-reveal data-reveal-delay={0.05}>
-            Nine days back in the supply chain<span className="accent">.</span>
+            Nine days back in the <span className="accent">supply chain</span><span className="accent">.</span>
           </h2>
           <p className="case-study__sub" data-reveal data-reveal-delay={0.12}>
-            Rotterdam → Chicago. A Tier-1 automotive parts supplier, a lane that had quietly drifted,
-            and the three changes that fixed it.
+            Rotterdam → Chicago. The three changes that fixed a drifting lane.
           </p>
         </div>
 
-        <div className="case-study__grid">
-          <div className="case-study__photo" data-reveal="mask">
-            <img
-              src="/images/case-port.webp"
-              alt="Container cranes and a cargo ship at a deep-water port"
-              width="500"
-              height="625"
-              loading="lazy"
-              decoding="async"
-              data-parallax="10"
-            />
-            <div className="case-study__photo-tag">
-              <span className="label label--gold">Lane</span>
-              <span>Rotterdam → Chicago</span>
-            </div>
-          </div>
-
-          <div className="case-study__text">
+        <div className="case-study__layout">
+          <div className="case-study__copy">
             <div className="case-study__body" data-reveal>
               <p className="case-study__lede">
-                The lane was 34 days door-to-door, with customs holds adding three to five days at
-                random. The supplier&rsquo;s line-side buffer was carrying the cost.
+                The lane ran 34 days door-to-door; customs holds added three to five days at random.
+                The supplier&rsquo;s line-side buffer carried the cost.
               </p>
               <p>
                 Meridian moved the lane to a weekly FCL sailing, pre-cleared the entry before arrival
-                and added a rail leg from New York to Chicago. One specialist owned the file from
-                booking to delivery.
+                and added a New York–Chicago rail leg. One specialist owned the file end to end.
               </p>
             </div>
 
@@ -64,26 +42,21 @@ export default function CaseStudy({ onRequestQuote }: Props) {
                 <strong data-count="2.3">2.3</strong>
                 <span>Days average customs clearance</span>
               </div>
-              <div data-reveal data-reveal-delay={0.14}>
-                <strong data-count="99.2%">99.2%</strong>
-                <span>On-time delivery</span>
-              </div>
             </div>
 
             <div className={`case-study__more${expanded ? ' is-open' : ''}`} id="case-study-more">
               <div className="case-study__more-inner">
                 <p>
-                  The first change was the sailing: a fixed weekly FCL allocation instead of spot
-                  bookings. The second was the entry: documents were filed four days before vessel
-                  arrival, so the container moved from discharge to rail without a customs queue. The
-                  third was the handoff: a named specialist in Rotterdam and a named specialist in
-                  Chicago shared one file, one status page and one escalation number.
+                  First, the sailing: a fixed weekly FCL allocation instead of spot bookings.
+                  Second, the entry: documents filed four days before arrival, so the container moved
+                  discharge-to-rail with no customs queue. Third, the handoff: a named specialist in
+                  Rotterdam and one in Chicago, sharing one file, one status page and one escalation
+                  number.
                 </p>
                 <p>
-                  The supplier kept its existing Incoterms and its customs broker of record. Meridian
-                  ran the booking, the pre-clearance and the inland leg. The result was a 9-day
-                  reduction in door-to-door transit and a 2.3-day average customs clearance across the
-                  first 120 containers.
+                  The supplier kept its existing Incoterms and broker. Meridian ran the booking,
+                  pre-clearance and the inland leg. Result: 9 days off door-to-door transit across
+                  the first 120 containers.
                 </p>
               </div>
             </div>
@@ -101,32 +74,36 @@ export default function CaseStudy({ onRequestQuote }: Props) {
 
             <div className="case-study__actions" data-reveal>
               <button
-                className="btn btn--primary"
-                type="button"
-                onClick={() =>
-                  onRequestQuote({
-                    origin: 'Europe',
-                    destination: 'North America',
-                    cargo: 'Automotive parts',
-                    note: 'Rotterdam → Chicago · automotive parts · request a similar assessment',
-                  })
-                }
-              >
-                Request a similar assessment
-                <ArrowRight className="btn__arrow" />
-              </button>
-              <button
-                className="btn btn--ghost btn--ghost-light"
+                className="text-link text-link--light"
                 type="button"
                 aria-expanded={expanded}
                 aria-controls="case-study-more"
                 onClick={() => setExpanded((value) => !value)}
               >
-                {expanded ? 'Close the case study' : 'Read the full story'}
-                <ArrowRight className={`btn__arrow${expanded ? ' is-up' : ''}`} />
+                {expanded ? 'Close the full case study' : 'Read full case study'}
+                <ArrowRight className={`text-link__icon${expanded ? ' is-up' : ''}`} />
               </button>
+              <a className="btn btn--ghost btn--ghost-light" href="#contact" onClick={(event) => { event.preventDefault(); transitionToId('contact'); }}>
+                <span>Request similar assessment</span>
+                <ArrowRight className="btn__arrow" />
+              </a>
             </div>
           </div>
+
+          <figure className="case-study__figure" data-reveal="mask">
+            <div className="case-study__echo" aria-hidden="true" />
+            <div className="case-study__arch">
+              <img
+                src="/images/case-study-port.jpg"
+                alt="A container vessel alongside gantry cranes at a deep-water port at dusk"
+                width="1122"
+                height="1402"
+                loading="lazy"
+                decoding="async"
+                data-parallax="6"
+              />
+            </div>
+          </figure>
         </div>
       </div>
     </section>

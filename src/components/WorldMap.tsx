@@ -64,7 +64,7 @@ export default function WorldMap({ variant = 'hero', className = '' }: Props) {
         )}
 
         <g className="map__ports">
-          {ports.map((port) => {
+          {ports.map((port, index) => {
             const isOffice = port.type === 'office';
             const showLabel = isOffice && port.label;
             const labelOnLeft = port.x > MAP_WIDTH - 150;
@@ -83,6 +83,12 @@ export default function WorldMap({ variant = 'hero', className = '' }: Props) {
               >
                 {isOffice ? (
                   <>
+                    <circle className="port__hit" r="14" />
+                    <circle
+                      className="port__ping"
+                      r="7.5"
+                      style={{ animationDelay: `${(index * 0.55) % 3}s` }}
+                    />
                     <circle className="port__ring" r="7.5" />
                     <circle className="port__dot" r="3.1" />
                   </>
@@ -123,16 +129,7 @@ export default function WorldMap({ variant = 'hero', className = '' }: Props) {
         )}
       </svg>
 
-      {isHero ? (
-        <>
-          <div className="map__overlay map__overlay--top">
-            <span className="label label--gold">Meridian network</span>
-            <span className="map__overlay-line" />
-            <span className="map__overlay-meta">140+ countries</span>
-          </div>
-
-        </>
-      ) : (
+      {!isHero && (
         <div className="map__legend">
           <span><i className="legend-dot legend-dot--office" /> Owned office</span>
           <span><i className="legend-dot legend-dot--partner" /> Partner port</span>

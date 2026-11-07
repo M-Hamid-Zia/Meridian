@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
+
 import Header from './components/Header';
-import Cursor from './components/Cursor';
 import CurveSwipe from './components/CurveSwipe';
 import Hero from './components/Hero';
 import Marquee from './components/Marquee';
 import ProofBar from './components/ProofBar';
-import RouteSelector from './components/RouteSelector';
+import RouteDesk from './components/RouteDesk';
 import Services from './components/Services';
 import CaseStudy from './components/CaseStudy';
 import Network from './components/Network';
@@ -13,26 +13,13 @@ import HumanProof from './components/HumanProof';
 import Faq from './components/Faq';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import BackToTop from './components/BackToTop';
+import GuideAvatar from './components/GuideAvatar';
 import Intro from './components/Intro';
-import type { CargoId, RegionId } from './data/routes';
+import { ArrowRight } from './components/Icons';
 import { useReveal } from './hooks/useReveal';
 import { useMagnetic } from './hooks/useMagnetic';
 import { gsap, prefersReducedMotion, startSmoothScroll, transitionToId } from './lib/motion';
-
-export type QuotePrefill = {
-  origin?: string;
-  destination?: string;
-  cargo?: string;
-  note?: string;
-  nonce: number;
-};
-
-export type RoutePreset = {
-  origin?: RegionId;
-  destination?: RegionId;
-  cargo?: CargoId;
-  nonce: number;
-};
 
 const trustedBy = [
   'Automotive OEM',
@@ -44,16 +31,35 @@ const trustedBy = [
 ];
 
 export default function App() {
-  const [quotePrefill, setQuotePrefill] = useState<QuotePrefill | null>(null);
-  const [routePreset, setRoutePreset] = useState<RoutePreset | null>(null);
   const [introDone, setIntroDone] = useState(() => prefersReducedMotion());
+  const [pastHero, setPastHero] = useState(false);
 
   useReveal();
   useMagnetic();
 
+  const requestQuote = useCallback(() => {
+    transitionToId('contact');
+  }, []);
+
   useEffect(() => {
     const stop = startSmoothScroll();
     return stop;
+  }, []);
+
+  // Hide the floating controls once the footer is on screen so they never
+  // cover the wordmark.
+  useEffect(() => {
+    const footer = document.querySelector('.footer');
+    if (!footer || !('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver(
+      ([entry]) => document.body.classList.toggle('at-foot', entry.isIntersecting),
+      { threshold: 0 }
+    );
+    io.observe(footer);
+    return () => {
+      io.disconnect();
+      document.body.classList.remove('at-foot');
+    };
   }, []);
 
   useEffect(() => {
@@ -67,21 +73,31 @@ export default function App() {
     );
   }, [introDone]);
 
-  const requestQuote = useCallback((prefill: Omit<QuotePrefill, 'nonce'>) => {
-    setQuotePrefill({ ...prefill, nonce: Date.now() });
-    window.setTimeout(() => transitionToId('contact'), 40);
-  }, []);
-
-  const selectService = useCallback((cargo: CargoId) => {
-    setRoutePreset({ cargo, nonce: Date.now() });
-    transitionToId('routes');
+  // Sticky mobile CTA appears only once the visitor has scrolled past the hero.
+  useEffect(() => {
+    let raf = 0;
+    const update = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const hero = document.querySelector<HTMLElement>('.hero');
+        const limit = hero ? hero.offsetHeight - Math.min(140, hero.offsetHeight * 0.18) : window.innerHeight * 0.75;
+        setPastHero(window.scrollY > limit);
+      });
+    };
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
+    };
   }, []);
 
   return (
     <>
       <a className="skip-link" href="#main">Skip to content</a>
       {!introDone && <Intro onDone={() => setIntroDone(true)} />}
-      <Cursor />
       <CurveSwipe />
       <Header />
       <main id="main">
@@ -90,17 +106,22 @@ export default function App() {
         <div className="marquee-band" aria-hidden="true">
           <Marquee items={trustedBy} duration={30} />
         </div>
-        <RouteSelector preset={routePreset} onRequestQuote={requestQuote} />
-        <Services onSelectService={selectService} />
-        <CaseStudy onRequestQuote={requestQuote} />
+        <RouteDesk />
+        <Services onSelectService={requestQuote} />
+        <CaseStudy />
         <Network />
         <HumanProof />
         <Faq />
-        <Contact prefill={quotePrefill} />
+        <Contact />
       </main>
       <Footer />
-      <nav className="actionbar" aria-label="Quick actions">
-        <a className="btn btn--primary btn--block" href="#contact">Request a quote</a>
+      <BackToTop />
+      <GuideAvatar />
+      <nav className={`actionbar${pastHero ? ' is-visible' : ''}`} aria-label="Quick actions">
+        <a className="btn btn--primary btn--block" href="#contact" onClick={(event) => { event.preventDefault(); transitionToId('contact'); }}>
+          <span>Request a quote</span>
+          <ArrowRight className="btn__arrow" />
+        </a>
       </nav>
     </>
   );

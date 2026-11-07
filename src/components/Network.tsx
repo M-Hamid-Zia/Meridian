@@ -9,44 +9,63 @@ const offices = ports.filter((port) => port.type === 'office');
 export default function Network() {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const viewportRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLSpanElement>(null);
   const [active, setActive] = useState(0);
 
   useEffect(() => {
     const section = sectionRef.current;
     const track = trackRef.current;
-    if (!section || !track || prefersReducedMotion()) return;
+    const viewport = viewportRef.current;
+    if (!section || !track || !viewport) return;
+
+    const paint = (progress: number) => {
+      if (progressRef.current) {
+        progressRef.current.style.transform = `scaleX(${Math.max(0.02, progress)})`;
+      }
+      const cards = track.querySelectorAll('[data-card]').length || 1;
+      setActive(Math.min(cards - 1, Math.round(progress * (cards - 1))));
+    };
 
     const mm = gsap.matchMedia();
-    mm.add('(min-width: 900px)', () => {
-      const getDistance = () => Math.max(0, track.scrollWidth - window.innerWidth + 64);
 
-      const tween = gsap.to(track, {
-        x: () => -getDistance(),
-        ease: 'none',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          end: () => `+=${getDistance() + window.innerHeight * 0.35}`,
-          scrub: 0.8,
-          pin: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          onUpdate: (self) => {
-            if (progressRef.current) {
-              progressRef.current.style.transform = `scaleX(${Math.max(0.02, self.progress)})`;
-            }
-            const cards = track.querySelectorAll('[data-card]').length || 1;
-            setActive(Math.min(cards - 1, Math.round(self.progress * (cards - 1))));
+    // Pinned scrub on every screen (reduced motion falls back to the swipe rail).
+    if (!prefersReducedMotion()) {
+      mm.add('(min-width: 0px)', () => {
+        const getDistance = () => Math.max(0, track.scrollWidth - window.innerWidth + 64);
+
+        const tween = gsap.to(track, {
+          x: () => -getDistance(),
+          ease: 'none',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top top',
+            end: () => `+=${getDistance() + window.innerHeight * 0.35}`,
+            scrub: 0.8,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            onUpdate: (self) => paint(self.progress),
           },
-        },
-      });
+        });
 
-      return () => {
-        tween.scrollTrigger?.kill();
-        tween.kill();
-        ScrollTrigger.refresh();
+        return () => {
+          tween.scrollTrigger?.kill();
+          tween.kill();
+          ScrollTrigger.refresh();
+        };
+      });
+    }
+
+    // Native swipe rail: small screens, and reduced motion at any width.
+    mm.add('(prefers-reduced-motion: reduce)', () => {
+      const onScroll = () => {
+        const max = viewport.scrollWidth - viewport.clientWidth;
+        paint(max > 0 ? viewport.scrollLeft / max : 1);
       };
+      viewport.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+      return () => viewport.removeEventListener('scroll', onScroll);
     });
 
     return () => mm.revert();
@@ -62,7 +81,7 @@ export default function Network() {
                 <span className="eyebrow__num">04</span> Network
               </span>
               <h2>
-                One accountable contract<span className="accent">.</span>
+                One accountable <span className="accent">contract</span><span className="accent">.</span>
               </h2>
             </div>
             <div className="section-head__intro">
@@ -74,7 +93,7 @@ export default function Network() {
           </div>
         </div>
 
-        <div className="network__viewport" data-cursor="drag">
+        <div className="network__viewport" ref={viewportRef}>
           <div className="network__track" ref={trackRef}>
             <article className="hub hub--intro" data-card>
               <span className="hub__index">01 / 13</span>
@@ -82,13 +101,13 @@ export default function Network() {
                 12 owned offices. 60+ partner agents. <em>One accountable contract.</em>
               </p>
               <p className="hub__copy">
-                We do not hand a shipment to a stranger at the other end. The partner agent works to
-                our document and our escalation path.
+                We do not hand your cargo to a stranger. Partner agents work to our document and
+                escalation path.
               </p>
-              <button className="btn btn--primary" type="button" onClick={() => transitionToId('contact')} data-cursor="link">
-                Request a quote
+              <a className="btn btn--primary" href="#contact" onClick={(event) => { event.preventDefault(); transitionToId('contact'); }}>
+                <span>Request a quote</span>
                 <ArrowRight className="btn__arrow" />
-              </button>
+              </a>
             </article>
 
             {offices.map((office, index) => (
@@ -127,7 +146,7 @@ export default function Network() {
               </div>
               <div className="hub__map-caption">
                 <span className="label">Meridian network</span>
-                <p>Hover a pin for the hub name. Partner ports are shown as small dots.</p>
+                <p>Hover a pin for the hub name. Partner ports are small dots.</p>
               </div>
             </article>
           </div>
@@ -140,9 +159,6 @@ export default function Network() {
             </div>
             <span className="label network__counter">
               {String(active + 1).padStart(2, '0')} / {String(offices.length + 2).padStart(2, '0')}
-            </span>
-            <span className="label network__hint">
-              <span className="network__hint-dot" /> Scroll to travel the network
             </span>
           </div>
         </div>

@@ -3,10 +3,9 @@ import { ArrowRight, CloseIcon, MenuIcon, MeridianMark } from './Icons';
 import { transitionToId } from '../lib/motion';
 
 const links = [
-  { href: 'routes', label: 'Route desk', num: '01' },
-  { href: 'services', label: 'Services', num: '02' },
-  { href: 'network', label: 'Network', num: '03' },
-  { href: 'contact', label: 'Contact', num: '04' },
+  { href: 'services', label: 'Services', num: '01' },
+  { href: 'network', label: 'Network', num: '02' },
+  { href: 'contact', label: 'Contact', num: '03' },
 ];
 
 export default function Header() {
@@ -84,10 +83,10 @@ export default function Header() {
 
           <div className="nav__actions">
             <a className="nav__tel" href="tel:+3110000000">+31 10 000 000</a>
-            <button className="btn btn--primary nav__cta" type="button" onClick={go('contact')}>
-              Request a quote
+            <a className="btn btn--outline-gold nav__cta" href="#contact" onClick={go('contact')}>
+              <span>Request a quote</span>
               <ArrowRight className="btn__arrow" />
-            </button>
+            </a>
             <button
               className="nav__menu-btn"
               type="button"
@@ -132,12 +131,12 @@ export default function Header() {
           <div className="menu__foot">
             <div>
               <span className="label">Route desk</span>
-              <p>Waalhaven, Rotterdam<br />Answering within 4 hours</p>
+              <p>Waalhaven, Rotterdam</p>
             </div>
-            <button className="btn btn--primary" type="button" onClick={go('contact')} tabIndex={open ? 0 : -1}>
-              Request a quote
+            <a className="btn btn--outline-gold menu__cta" href="#contact" onClick={go('contact')} tabIndex={open ? 0 : -1}>
+              <span>Request a quote</span>
               <ArrowRight className="btn__arrow" />
-            </button>
+            </a>
           </div>
         </div>
       </div>

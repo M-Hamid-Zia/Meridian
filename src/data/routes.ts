@@ -341,4 +341,3 @@ export function getLane(originId: RegionId, destinationId: RegionId, cargoId: Ca
   };
 }
 
-export const defaultLane = getLane('europe', 'north-america', 'general');

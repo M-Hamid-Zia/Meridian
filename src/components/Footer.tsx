@@ -1,4 +1,4 @@
-import { MeridianMark } from './Icons';
+import { MeridianMark, ArrowRight } from './Icons';
 import { transitionToId } from '../lib/motion';
 
 const columns = [
@@ -31,21 +31,35 @@ export default function Footer() {
 
   return (
     <footer className="footer">
-      <div className="wrap">
-        <div className="footer__cta">
-          <span className="eyebrow eyebrow--light" data-reveal>
+      <section className="footer__cta" aria-labelledby="footer-cta-title">
+        <img
+          className="footer__cta-media"
+          src="/images/air-freight.jpg"
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+        />
+        <div className="footer__cta-scrim" aria-hidden="true" />
+        <div className="footer__cta-inner">
+          <span className="eyebrow eyebrow--light footer__cta-eyebrow" data-reveal>
             <span className="eyebrow__num">08</span> Next step
           </span>
-          <h2>
-            Every route,
+          <h2 id="footer-cta-title" data-reveal data-reveal-delay={0.05}>
+            One lane. One contract.
             <br />
-            <em>accounted for.</em>
+            <em>Zero surprises.</em>
           </h2>
-          <button className="btn btn--primary" type="button" onClick={go('contact')} data-reveal data-reveal-delay={0.1}>
-            Start a quote
-          </button>
+          <p className="footer__cta-copy" data-reveal data-reveal-delay={0.1}>
+            Tell us your lane and you'll have a written quote within one business day.
+          </p>
+          <a className="btn btn--primary footer__cta-btn" href="#contact" onClick={go('contact')} data-reveal data-reveal-delay={0.15}>
+            <span>Request a quote</span>
+            <ArrowRight className="btn__arrow" />
+          </a>
         </div>
+      </section>
 
+      <div className="wrap">
         <div className="footer__top">
           <div className="footer__brand">
             <a className="brand" href="#top" onClick={go('top')} aria-label="Meridian home">
@@ -55,7 +69,7 @@ export default function Footer() {
                 <span className="brand__sub">Freight &amp; trade</span>
               </span>
             </a>
-            <p>Freight forwarding and trade management across 140+ countries.</p>
+            <p>Freight forwarding and trade management worldwide.</p>
           </div>
 
           {columns.map((column) => (
@@ -74,21 +88,14 @@ export default function Footer() {
             <p>Waalhaven<br />Rotterdam, NL</p>
             <span className="label">Credentials</span>
             <p>FIATA · IATA<br />Customs broker (EU)</p>
-            <span className="label">Registration</span>
-            <p>Numbers available on request.</p>
           </div>
         </div>
 
         <div className="footer__wordmark" aria-hidden="true">
-          <span>Meridian</span>
+          <svg className="footer__wordmark-svg" viewBox="0 0 1440 312" role="presentation" focusable="false">
+            <text x="0" y="304" textLength="1440" lengthAdjust="spacing">Meridian</text>
+          </svg>
         </div>
-
-        <div className="footer__legal">
-          <span>© {new Date().getFullYear()} Meridian Freight B.V.</span>
-          <span>FIATA · IATA · Customs broker (EU)</span>
-          <a href="#top" onClick={go('top')}>Back to top ↑</a>
-        </div>
-        <p className="footer__credits">Photographs via Pexels. Map data: Natural Earth.</p>
       </div>
     </footer>
   );

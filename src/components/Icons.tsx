@@ -20,6 +20,14 @@ export function ArrowRight({ className = '' }: IconProps) {
   );
 }
 
+export function ArrowUp({ className = '' }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 17V4M5 9l5-5 5 5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export function ShipIcon({ className = '' }: IconProps) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden="true">
