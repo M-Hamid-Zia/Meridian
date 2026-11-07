@@ -89,6 +89,14 @@ export function useReveal() {
       ScrollTrigger.refresh();
     });
 
-    return () => ctx.revert();
+    // Reveal positions are viewport-relative; late image and font loads shift them.
+    const refresh = () => ScrollTrigger.refresh();
+    window.addEventListener('load', refresh);
+    document.fonts?.ready?.then(refresh).catch(() => {});
+
+    return () => {
+      window.removeEventListener('load', refresh);
+      ctx.revert();
+    };
   }, []);
 }

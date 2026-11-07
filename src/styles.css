@@ -80,6 +80,7 @@ body {
   font-size: 16px;
   line-height: var(--lh-body);
   letter-spacing: -0.005em;
+  overflow-wrap: break-word;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
@@ -615,16 +616,6 @@ body::after {
   gap: 1.25rem;
 }
 
-.nav__tel {
-  letter-spacing: 0.04em;
-  color: var(--muted-dark);
-  transition: color 0.3s ease;
-}
-
-.nav__tel:hover {
-  color: var(--gold-2);
-}
-
 .nav__cta {
   height: 44px;
   padding: 0 1.375rem;
@@ -734,11 +725,6 @@ body::after {
 .menu.is-open .menu__links a:nth-child(3) { transition-delay: 0.3s; }
 .menu.is-open .menu__links a:nth-child(4) { transition-delay: 0.36s; }
 
-.menu__num {
-  letter-spacing: 0.16em;
-  color: var(--gold);
-}
-
 .menu__label {
   font-family: var(--serif);
   font-size: clamp(34px, 5.4vw, 62px);
@@ -789,6 +775,7 @@ body::after {
   position: relative;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
   min-height: 100svh;
   padding-top: calc(var(--nav) + clamp(1rem, 3vh, 2rem));
   padding-bottom: 0;
@@ -1797,6 +1784,7 @@ body::after {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-height: 100vh;
   min-height: 100svh;
   padding: clamp(5rem, 9vw, 7.5rem) 0 clamp(1.5rem, 4vw, 3rem);
   overflow: hidden;
@@ -2182,6 +2170,18 @@ body::after {
 .faq {
   background: var(--paper);
   border-top: 1px solid var(--line);
+}
+
+/* The Questions header reads as one horizontally centered column. */
+.faq .section-head {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  row-gap: 1.125rem;
+  text-align: center;
+}
+
+.faq .section-head__intro p {
+  margin-inline: auto;
 }
 
 .faq__list {
@@ -3017,13 +3017,6 @@ body.at-foot .actionbar {
    Responsive
    ========================================================================== */
 
-@media (max-width: 1180px) {
-  .nav__tel {
-    display: none;
-  }
-
-}
-
 @media (max-width: 940px) {
   :root {
     --nav: 4.25rem;
@@ -3128,6 +3121,7 @@ body.at-foot .actionbar {
   }
 
   .network__fixed {
+    min-height: 100vh;
     min-height: 100svh;
     padding: clamp(1.5rem, 4.5vh, 2.75rem) 0 clamp(0.75rem, 2vh, 1.75rem);
   }
@@ -3181,9 +3175,6 @@ body.at-foot .actionbar {
 
   .hero__title {
     font-size: clamp(44px, 12.4vw, 58px);
-  }
-
-  .hero__lead {
   }
 
   .hero__actions {
@@ -3411,8 +3402,8 @@ body.at-foot .actionbar {
   }
 }
 
-/* Native horizontal rail scroll (reduced motion only, at any width). */
-@media (prefers-reduced-motion: reduce) {
+/* Native horizontal rail scroll: small screens at any motion setting, reduced motion at any width. */
+@media (max-width: 939px), (prefers-reduced-motion: reduce) {
   .network__viewport {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -3567,11 +3558,6 @@ body.at-foot .actionbar {
     margin-top: 0.125rem;
     padding-top: 0.875rem;
     border-top: 1px solid var(--line-dark);
-  }
-
-  .hero__regions > .label {
-    display: block;
-    color: var(--gold-2);
   }
 
   .hero__regions-grid {
@@ -3930,3 +3916,4 @@ body.menu-open .guide {
     will-change: top, left;
   }
 }
+

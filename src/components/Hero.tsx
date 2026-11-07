@@ -114,7 +114,6 @@ export default function Hero() {
 
 
           <div className="hero__regions">
-            <span className="label label--gold">Owned offices by region</span>
             <ul className="hero__regions-grid">
               {regionList.map(({ region, cities }) => (
                 <li key={region}>
