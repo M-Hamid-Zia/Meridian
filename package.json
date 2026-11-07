@@ -25,6 +25,7 @@
     "dev": "vite --host 0.0.0.0",
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 0.0.0.0",
-    "build:avatar": "node scripts/build-avatar.mjs"
+    "build:avatar": "node scripts/build-avatar.mjs",
+    "build:guide": "node scripts/build-guide.mjs"
   }
 }

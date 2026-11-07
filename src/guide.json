@@ -1,0 +1,1333 @@
+{
+  "schema": "bible-strong/avatar-definition",
+  "schemaVersion": 1,
+  "name": "Meridian Route Desk Guide",
+  "body": {
+    "primary": {
+      "type": "sphere",
+      "width": 232,
+      "height": 232,
+      "depth": 232,
+      "roundness": 1
+    },
+    "nodes": [
+      {
+        "surface": {
+          "type": "sphere",
+          "width": 84,
+          "height": 84,
+          "depth": 84,
+          "roundness": 1
+        },
+        "position": [
+          -82,
+          -72,
+          -8
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "surface": {
+          "type": "sphere",
+          "width": 84,
+          "height": 84,
+          "depth": 84,
+          "roundness": 1
+        },
+        "position": [
+          82,
+          -72,
+          -8
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "surface": {
+          "type": "capsule",
+          "width": 16,
+          "height": 44,
+          "depth": 16,
+          "roundness": 1
+        },
+        "position": [
+          3,
+          -122,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          -14
+        ]
+      },
+      {
+        "surface": {
+          "type": "sphere",
+          "width": 26,
+          "height": 26,
+          "depth": 26,
+          "roundness": 1
+        },
+        "position": [
+          7,
+          -133,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "surface": {
+          "type": "sphere",
+          "width": 38,
+          "height": 38,
+          "depth": 38,
+          "roundness": 1
+        },
+        "position": [
+          -36,
+          -78,
+          66
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "surface": {
+          "type": "sphere",
+          "width": 44,
+          "height": 44,
+          "depth": 44,
+          "roundness": 1
+        },
+        "position": [
+          0,
+          -84,
+          64
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "surface": {
+          "type": "sphere",
+          "width": 38,
+          "height": 38,
+          "depth": 38,
+          "roundness": 1
+        },
+        "position": [
+          36,
+          -78,
+          66
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "surface": {
+          "type": "sphere",
+          "width": 34,
+          "height": 34,
+          "depth": 34,
+          "roundness": 1
+        },
+        "position": [
+          -56,
+          22,
+          92
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "surface": {
+          "type": "sphere",
+          "width": 34,
+          "height": 34,
+          "depth": 34,
+          "roundness": 1
+        },
+        "position": [
+          56,
+          22,
+          92
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "surface": {
+          "type": "sphere",
+          "width": 20,
+          "height": 20,
+          "depth": 20,
+          "roundness": 1
+        },
+        "position": [
+          -84,
+          33,
+          62
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "surface": {
+          "type": "sphere",
+          "width": 20,
+          "height": 20,
+          "depth": 20,
+          "roundness": 1
+        },
+        "position": [
+          84,
+          33,
+          62
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "surface": {
+          "type": "sphere",
+          "width": 38,
+          "height": 38,
+          "depth": 38,
+          "roundness": 1
+        },
+        "position": [
+          -106,
+          52,
+          12
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "surface": {
+          "type": "sphere",
+          "width": 38,
+          "height": 38,
+          "depth": 38,
+          "roundness": 1
+        },
+        "position": [
+          106,
+          52,
+          12
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "surface": {
+          "type": "sphere",
+          "width": 28,
+          "height": 28,
+          "depth": 28,
+          "roundness": 1
+        },
+        "position": [
+          0,
+          80,
+          74
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "surface": {
+          "type": "sphere",
+          "width": 30,
+          "height": 30,
+          "depth": 30,
+          "roundness": 1
+        },
+        "position": [
+          -44,
+          104,
+          10
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "surface": {
+          "type": "sphere",
+          "width": 30,
+          "height": 30,
+          "depth": 30,
+          "roundness": 1
+        },
+        "position": [
+          44,
+          104,
+          10
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  "colors": {
+    "body": "#d8b65e",
+    "eyes": "#0b0b0c"
+  },
+  "expressions": {
+    "neutral": {
+      "head": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "eyes": {
+        "left": {
+          "width": 58,
+          "height": 70,
+          "x": -1,
+          "y": -16,
+          "angle": 0
+        },
+        "right": {
+          "width": 58,
+          "height": 70,
+          "x": 1,
+          "y": -16,
+          "angle": 0
+        },
+        "spacing": 118
+      },
+      "perspective": 1.85,
+      "motion": {
+        "eyes": "microSaccades",
+        "body": "slowDrift"
+      }
+    },
+    "focused": {
+      "head": {
+        "x": 0,
+        "y": 8,
+        "z": 0
+      },
+      "eyes": {
+        "left": {
+          "width": 58,
+          "height": 31,
+          "x": -1,
+          "y": -13,
+          "angle": 0
+        },
+        "right": {
+          "width": 58,
+          "height": 31,
+          "x": 1,
+          "y": -13,
+          "angle": 0
+        },
+        "spacing": 118
+      },
+      "perspective": 1.85,
+      "motion": {
+        "eyes": "none",
+        "body": "none"
+      }
+    },
+    "satisfied": {
+      "head": {
+        "x": 0,
+        "y": -6,
+        "z": 0
+      },
+      "eyes": {
+        "left": {
+          "width": 54,
+          "height": 20,
+          "x": -1,
+          "y": -12,
+          "angle": 0
+        },
+        "right": {
+          "width": 54,
+          "height": 20,
+          "x": 1,
+          "y": -12,
+          "angle": 0
+        },
+        "spacing": 118
+      },
+      "perspective": 1.85,
+      "motion": {
+        "eyes": "none",
+        "body": "none"
+      }
+    },
+    "look": {
+      "head": {
+        "x": 8,
+        "y": 0,
+        "z": 0
+      },
+      "eyes": {
+        "left": {
+          "width": 54,
+          "height": 64,
+          "x": -1,
+          "y": -16,
+          "angle": -7
+        },
+        "right": {
+          "width": 54,
+          "height": 64,
+          "x": 1,
+          "y": -16,
+          "angle": -7
+        },
+        "spacing": 118
+      },
+      "perspective": 1.85,
+      "motion": {
+        "eyes": "none",
+        "body": "none"
+      }
+    },
+    "wink": {
+      "head": {
+        "x": 4,
+        "y": 2,
+        "z": 0
+      },
+      "eyes": {
+        "left": {
+          "width": 58,
+          "height": 70,
+          "x": -1,
+          "y": -16,
+          "angle": 0
+        },
+        "right": {
+          "width": 58,
+          "height": 13,
+          "x": 1,
+          "y": -13,
+          "angle": 0
+        },
+        "spacing": 118
+      },
+      "perspective": 1.85,
+      "motion": {
+        "eyes": "none",
+        "body": "none"
+      }
+    },
+    "delighted": {
+      "head": {
+        "x": 0,
+        "y": -8,
+        "z": 0
+      },
+      "eyes": {
+        "left": {
+          "width": 60,
+          "height": 77,
+          "x": -1,
+          "y": -17,
+          "angle": 0
+        },
+        "right": {
+          "width": 60,
+          "height": 77,
+          "x": 1,
+          "y": -17,
+          "angle": 0
+        },
+        "spacing": 118
+      },
+      "perspective": 1.85,
+      "motion": {
+        "eyes": "none",
+        "body": "none"
+      },
+      "colors": {
+        "body": "#e6c87a"
+      }
+    },
+    "pleading": {
+      "head": {
+        "x": 3,
+        "y": 5,
+        "z": 0
+      },
+      "eyes": {
+        "left": {
+          "width": 62,
+          "height": 80,
+          "x": -1,
+          "y": -15,
+          "angle": 0
+        },
+        "right": {
+          "width": 62,
+          "height": 80,
+          "x": 1,
+          "y": -15,
+          "angle": 0
+        },
+        "spacing": 118
+      },
+      "perspective": 1.85,
+      "motion": {
+        "eyes": "none",
+        "body": "none"
+      },
+      "colors": {
+        "body": "#e6c87a"
+      }
+    },
+    "curious": {
+      "head": {
+        "x": -4,
+        "y": 6,
+        "z": 0
+      },
+      "eyes": {
+        "left": {
+          "width": 60,
+          "height": 72,
+          "x": -1,
+          "y": -16,
+          "angle": 0
+        },
+        "right": {
+          "width": 52,
+          "height": 62,
+          "x": 1,
+          "y": -16,
+          "angle": 0
+        },
+        "spacing": 118
+      },
+      "perspective": 1.85,
+      "motion": {
+        "eyes": "none",
+        "body": "none"
+      }
+    },
+    "sleepy": {
+      "head": {
+        "x": 0,
+        "y": 1,
+        "z": 5
+      },
+      "eyes": {
+        "left": {
+          "width": 56,
+          "height": 30,
+          "x": -1,
+          "y": -12,
+          "angle": 0
+        },
+        "right": {
+          "width": 56,
+          "height": 30,
+          "x": 1,
+          "y": -12,
+          "angle": 0
+        },
+        "spacing": 118
+      },
+      "perspective": 1.85,
+      "motion": {
+        "eyes": "none",
+        "body": "none"
+      }
+    },
+    "giggle": {
+      "head": {
+        "x": 2,
+        "y": 0,
+        "z": 6
+      },
+      "eyes": {
+        "left": {
+          "width": 55,
+          "height": 22,
+          "x": -1,
+          "y": -13,
+          "angle": 0
+        },
+        "right": {
+          "width": 55,
+          "height": 24,
+          "x": 1,
+          "y": -12,
+          "angle": 0
+        },
+        "spacing": 118
+      },
+      "perspective": 1.85,
+      "motion": {
+        "eyes": "none",
+        "body": "none"
+      }
+    },
+    "astonished": {
+      "head": {
+        "x": 0,
+        "y": -6,
+        "z": 0
+      },
+      "eyes": {
+        "left": {
+          "width": 62,
+          "height": 84,
+          "x": -1,
+          "y": -16,
+          "angle": 0
+        },
+        "right": {
+          "width": 62,
+          "height": 84,
+          "x": 1,
+          "y": -16,
+          "angle": 0
+        },
+        "spacing": 118
+      },
+      "perspective": 1.85,
+      "motion": {
+        "eyes": "none",
+        "body": "none"
+      }
+    },
+    "mischief": {
+      "head": {
+        "x": 3,
+        "y": 3,
+        "z": 0
+      },
+      "eyes": {
+        "left": {
+          "width": 54,
+          "height": 34,
+          "x": -1,
+          "y": -12,
+          "angle": -14
+        },
+        "right": {
+          "width": 54,
+          "height": 34,
+          "x": 1,
+          "y": -12,
+          "angle": 14
+        },
+        "spacing": 118
+      },
+      "perspective": 1.85,
+      "motion": {
+        "eyes": "none",
+        "body": "none"
+      }
+    },
+    "nervous": {
+      "head": {
+        "x": 0,
+        "y": 4,
+        "z": 0
+      },
+      "eyes": {
+        "left": {
+          "width": 44,
+          "height": 54,
+          "x": -1,
+          "y": -17,
+          "angle": 0
+        },
+        "right": {
+          "width": 44,
+          "height": 54,
+          "x": 1,
+          "y": -17,
+          "angle": 0
+        },
+        "spacing": 118
+      },
+      "perspective": 1.85,
+      "motion": {
+        "eyes": "microSaccades",
+        "body": "none"
+      }
+    },
+    "bashful": {
+      "head": {
+        "x": 0,
+        "y": 5,
+        "z": 0
+      },
+      "eyes": {
+        "left": {
+          "width": 54,
+          "height": 34,
+          "x": -1,
+          "y": -9,
+          "angle": 0
+        },
+        "right": {
+          "width": 54,
+          "height": 34,
+          "x": 1,
+          "y": -9,
+          "angle": 0
+        },
+        "spacing": 118
+      },
+      "perspective": 1.85,
+      "motion": {
+        "eyes": "none",
+        "body": "none"
+      }
+    },
+    "brave": {
+      "head": {
+        "x": 0,
+        "y": -10,
+        "z": 0
+      },
+      "eyes": {
+        "left": {
+          "width": 58,
+          "height": 74,
+          "x": -1,
+          "y": -17,
+          "angle": 0
+        },
+        "right": {
+          "width": 58,
+          "height": 74,
+          "x": 1,
+          "y": -17,
+          "angle": 0
+        },
+        "spacing": 118
+      },
+      "perspective": 1.85,
+      "motion": {
+        "eyes": "none",
+        "body": "none"
+      }
+    },
+    "angry": {
+      "head": {
+        "x": 0,
+        "y": -4,
+        "z": 0
+      },
+      "eyes": {
+        "left": {
+          "width": 54,
+          "height": 26,
+          "x": -1,
+          "y": -14,
+          "angle": -14
+        },
+        "right": {
+          "width": 54,
+          "height": 26,
+          "x": 1,
+          "y": -14,
+          "angle": 14
+        },
+        "spacing": 118
+      },
+      "perspective": 1.85,
+      "motion": {
+        "eyes": "none",
+        "body": "shake"
+      },
+      "colors": {
+        "body": "#b8422f"
+      }
+    },
+    "sleeping": {
+      "head": {
+        "x": 0,
+        "y": 1,
+        "z": 9
+      },
+      "eyes": {
+        "left": {
+          "width": 52,
+          "height": 11,
+          "x": -1,
+          "y": -12,
+          "angle": 0
+        },
+        "right": {
+          "width": 52,
+          "height": 11,
+          "x": 1,
+          "y": -12,
+          "angle": 0
+        },
+        "spacing": 118
+      },
+      "perspective": 1.85,
+      "motion": {
+        "eyes": "none",
+        "body": "none"
+      }
+    },
+    "watching": {
+      "head": {
+        "x": 10,
+        "y": 0,
+        "z": 2
+      },
+      "eyes": {
+        "left": {
+          "width": 57,
+          "height": 50,
+          "x": -1,
+          "y": -15,
+          "angle": 0
+        },
+        "right": {
+          "width": 57,
+          "height": 50,
+          "x": 1,
+          "y": -15,
+          "angle": 0
+        },
+        "spacing": 118
+      },
+      "perspective": 1.85,
+      "motion": {
+        "eyes": "microSaccades",
+        "body": "none"
+      }
+    },
+    "searching": {
+      "head": {
+        "x": 6,
+        "y": -5,
+        "z": 0
+      },
+      "eyes": {
+        "left": {
+          "width": 55,
+          "height": 66,
+          "x": -1,
+          "y": -20,
+          "angle": 0
+        },
+        "right": {
+          "width": 55,
+          "height": 66,
+          "x": 1,
+          "y": -20,
+          "angle": 0
+        },
+        "spacing": 118
+      },
+      "perspective": 1.85,
+      "motion": {
+        "eyes": "microSaccades",
+        "body": "none"
+      }
+    },
+    "bored": {
+      "head": {
+        "x": 0,
+        "y": 3,
+        "z": 0
+      },
+      "eyes": {
+        "left": {
+          "width": 52,
+          "height": 16,
+          "x": -1,
+          "y": -12,
+          "angle": 0
+        },
+        "right": {
+          "width": 52,
+          "height": 16,
+          "x": 1,
+          "y": -12,
+          "angle": 0
+        },
+        "spacing": 118
+      },
+      "perspective": 1.85,
+      "motion": {
+        "eyes": "none",
+        "body": "none"
+      }
+    },
+    "happy": {
+      "head": {
+        "x": 0,
+        "y": -5,
+        "z": 0
+      },
+      "eyes": {
+        "left": {
+          "width": 52,
+          "height": 38,
+          "x": -1,
+          "y": -15,
+          "angle": 0
+        },
+        "right": {
+          "width": 52,
+          "height": 38,
+          "x": 1,
+          "y": -15,
+          "angle": 0
+        },
+        "spacing": 118
+      },
+      "perspective": 1.85,
+      "motion": {
+        "eyes": "none",
+        "body": "none"
+      }
+    },
+    "excited": {
+      "head": {
+        "x": 0,
+        "y": -10,
+        "z": 0
+      },
+      "eyes": {
+        "left": {
+          "width": 54,
+          "height": 72,
+          "x": -1,
+          "y": -17,
+          "angle": 0
+        },
+        "right": {
+          "width": 54,
+          "height": 72,
+          "x": 1,
+          "y": -17,
+          "angle": 0
+        },
+        "spacing": 118
+      },
+      "perspective": 1.85,
+      "motion": {
+        "eyes": "microSaccades",
+        "body": "none"
+      }
+    }
+  },
+  "expressionOrder": [
+    "neutral",
+    "focused",
+    "satisfied",
+    "look",
+    "wink",
+    "delighted",
+    "pleading",
+    "curious",
+    "sleepy",
+    "giggle",
+    "astonished",
+    "mischief",
+    "nervous",
+    "bashful",
+    "brave",
+    "angry",
+    "sleeping",
+    "watching",
+    "searching",
+    "bored",
+    "happy",
+    "excited"
+  ],
+  "animations": {
+    "idle": {
+      "playbackMode": "loop",
+      "steps": [
+        {
+          "expression": "neutral",
+          "holdMs": 1900,
+          "transitionMs": 560,
+          "transition": "smooth"
+        },
+        {
+          "expression": "watching",
+          "holdMs": 1000,
+          "transitionMs": 480,
+          "transition": "smooth"
+        },
+        {
+          "expression": "neutral",
+          "holdMs": 640,
+          "transitionMs": 400,
+          "transition": "smooth"
+        },
+        {
+          "expression": "bored",
+          "holdMs": 680,
+          "transitionMs": 560,
+          "transition": "smooth"
+        },
+        {
+          "expression": "neutral",
+          "holdMs": 560,
+          "transitionMs": 400,
+          "transition": "smooth"
+        },
+        {
+          "expression": "sleeping",
+          "holdMs": 780,
+          "transitionMs": 620,
+          "transition": "smooth"
+        },
+        {
+          "expression": "neutral",
+          "holdMs": 600,
+          "transitionMs": 280,
+          "transition": "snappy"
+        },
+        {
+          "expression": "satisfied",
+          "holdMs": 680,
+          "transitionMs": 420,
+          "transition": "spring"
+        }
+      ],
+      "blink": {
+        "enabled": true,
+        "initialDelayMs": 1200,
+        "minIntervalMs": 2400,
+        "maxIntervalMs": 4800,
+        "durationMs": 130
+      }
+    },
+    "greet": {
+      "playbackMode": "once",
+      "steps": [
+        {
+          "expression": "happy",
+          "holdMs": 420,
+          "transitionMs": 200,
+          "transition": "spring"
+        },
+        {
+          "expression": "brave",
+          "holdMs": 420,
+          "transitionMs": 220,
+          "transition": "spring"
+        },
+        {
+          "expression": "wink",
+          "holdMs": 560,
+          "transitionMs": 210,
+          "transition": "spring"
+        },
+        {
+          "expression": "delighted",
+          "holdMs": 480,
+          "transitionMs": 240,
+          "transition": "spring"
+        },
+        {
+          "expression": "satisfied",
+          "holdMs": 380,
+          "transitionMs": 240,
+          "transition": "spring"
+        },
+        {
+          "expression": "neutral",
+          "holdMs": 360,
+          "transitionMs": 300,
+          "transition": "smooth"
+        }
+      ],
+      "blink": {
+        "enabled": true,
+        "initialDelayMs": 700,
+        "minIntervalMs": 2400,
+        "maxIntervalMs": 4800,
+        "durationMs": 130
+      }
+    },
+    "think": {
+      "playbackMode": "once",
+      "steps": [
+        {
+          "expression": "focused",
+          "holdMs": 600,
+          "transitionMs": 180,
+          "transition": "spring"
+        },
+        {
+          "expression": "searching",
+          "holdMs": 650,
+          "transitionMs": 220,
+          "transition": "smooth"
+        },
+        {
+          "expression": "curious",
+          "holdMs": 520,
+          "transitionMs": 220,
+          "transition": "smooth"
+        },
+        {
+          "expression": "look",
+          "holdMs": 520,
+          "transitionMs": 240,
+          "transition": "smooth"
+        },
+        {
+          "expression": "neutral",
+          "holdMs": 320,
+          "transitionMs": 260,
+          "transition": "smooth"
+        }
+      ],
+      "blink": {
+        "enabled": true,
+        "initialDelayMs": 700,
+        "minIntervalMs": 2400,
+        "maxIntervalMs": 4800,
+        "durationMs": 130
+      }
+    },
+    "celebrate": {
+      "playbackMode": "once",
+      "steps": [
+        {
+          "expression": "delighted",
+          "holdMs": 420,
+          "transitionMs": 170,
+          "transition": "spring"
+        },
+        {
+          "expression": "astonished",
+          "holdMs": 380,
+          "transitionMs": 190,
+          "transition": "spring"
+        },
+        {
+          "expression": "excited",
+          "holdMs": 420,
+          "transitionMs": 200,
+          "transition": "spring"
+        },
+        {
+          "expression": "giggle",
+          "holdMs": 520,
+          "transitionMs": 200,
+          "transition": "spring"
+        },
+        {
+          "expression": "delighted",
+          "holdMs": 380,
+          "transitionMs": 220,
+          "transition": "spring"
+        },
+        {
+          "expression": "satisfied",
+          "holdMs": 400,
+          "transitionMs": 240,
+          "transition": "spring"
+        },
+        {
+          "expression": "neutral",
+          "holdMs": 340,
+          "transitionMs": 300,
+          "transition": "smooth"
+        }
+      ],
+      "blink": {
+        "enabled": true,
+        "initialDelayMs": 700,
+        "minIntervalMs": 2400,
+        "maxIntervalMs": 4800,
+        "durationMs": 130
+      }
+    },
+    "giggle": {
+      "playbackMode": "once",
+      "steps": [
+        {
+          "expression": "giggle",
+          "holdMs": 620,
+          "transitionMs": 170,
+          "transition": "spring"
+        },
+        {
+          "expression": "satisfied",
+          "holdMs": 380,
+          "transitionMs": 240,
+          "transition": "spring"
+        },
+        {
+          "expression": "neutral",
+          "holdMs": 320,
+          "transitionMs": 300,
+          "transition": "smooth"
+        }
+      ],
+      "blink": {
+        "enabled": true,
+        "initialDelayMs": 700,
+        "minIntervalMs": 2400,
+        "maxIntervalMs": 4800,
+        "durationMs": 130
+      }
+    },
+    "pleading": {
+      "playbackMode": "once",
+      "steps": [
+        {
+          "expression": "bashful",
+          "holdMs": 520,
+          "transitionMs": 220,
+          "transition": "smooth"
+        },
+        {
+          "expression": "pleading",
+          "holdMs": 720,
+          "transitionMs": 240,
+          "transition": "spring"
+        },
+        {
+          "expression": "satisfied",
+          "holdMs": 380,
+          "transitionMs": 280,
+          "transition": "smooth"
+        },
+        {
+          "expression": "neutral",
+          "holdMs": 300,
+          "transitionMs": 300,
+          "transition": "smooth"
+        }
+      ],
+      "blink": {
+        "enabled": true,
+        "initialDelayMs": 700,
+        "minIntervalMs": 2400,
+        "maxIntervalMs": 4800,
+        "durationMs": 130
+      }
+    },
+    "nervous": {
+      "playbackMode": "once",
+      "steps": [
+        {
+          "expression": "nervous",
+          "holdMs": 720,
+          "transitionMs": 180,
+          "transition": "snappy"
+        },
+        {
+          "expression": "neutral",
+          "holdMs": 320,
+          "transitionMs": 300,
+          "transition": "smooth"
+        }
+      ],
+      "blink": {
+        "enabled": true,
+        "initialDelayMs": 700,
+        "minIntervalMs": 2400,
+        "maxIntervalMs": 4800,
+        "durationMs": 130
+      }
+    },
+    "angry": {
+      "playbackMode": "once",
+      "steps": [
+        {
+          "expression": "angry",
+          "holdMs": 680,
+          "transitionMs": 150,
+          "transition": "snappy"
+        },
+        {
+          "expression": "nervous",
+          "holdMs": 420,
+          "transitionMs": 280,
+          "transition": "smooth"
+        },
+        {
+          "expression": "neutral",
+          "holdMs": 240,
+          "transitionMs": 260,
+          "transition": "smooth"
+        }
+      ],
+      "blink": {
+        "enabled": true,
+        "initialDelayMs": 700,
+        "minIntervalMs": 2400,
+        "maxIntervalMs": 4800,
+        "durationMs": 130
+      }
+    }
+  },
+  "animationOrder": [
+    "idle",
+    "greet",
+    "think",
+    "celebrate",
+    "giggle",
+    "pleading",
+    "nervous",
+    "angry"
+  ]
+}

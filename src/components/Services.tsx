@@ -1,9 +1,8 @@
 import { useRef, useState } from 'react';
-import type { CargoId } from '../data/routes';
 import { ArrowRight } from './Icons';
 
 type Props = {
-  onSelectService: (cargo: CargoId) => void;
+  onSelectService: () => void;
 };
 
 const services: {
@@ -15,7 +14,6 @@ const services: {
   metric: string;
   metricLabel: string;
   image: string;
-  cargo: CargoId;
 }[] = [
   {
     number: '01',
@@ -25,8 +23,7 @@ const services: {
     proof: 'Average 2.3-day customs clearance across EU ports.',
     metric: '2.3',
     metricLabel: 'days clearance',
-    image: '/images/route-port.webp',
-    cargo: 'general',
+    image: '/images/services-ocean.jpg',
   },
   {
     number: '02',
@@ -36,8 +33,7 @@ const services: {
     proof: 'Wheel-to-wheel in under 48 hours on 12 major corridors.',
     metric: '48',
     metricLabel: 'hours door-to-door',
-    image: '/images/air-crane.webp',
-    cargo: 'high-value',
+    image: '/images/services-air.jpg',
   },
   {
     number: '03',
@@ -47,8 +43,7 @@ const services: {
     proof: 'Zero penalty events across 2.1M filings.',
     metric: '0',
     metricLabel: 'penalty events',
-    image: '/images/services-warehouse.webp',
-    cargo: 'general',
+    image: '/images/services-customs.jpg',
   },
 ];
 
@@ -64,13 +59,12 @@ export default function Services({ onSelectService }: Props) {
               <span className="eyebrow__num">02</span> Services
             </span>
             <h2 data-reveal data-reveal-delay={0.05}>
-              Three ways we move freight<span className="accent">.</span>
+              <span className="accent">Three ways</span> we move freight<span className="accent">.</span>
             </h2>
           </div>
           <div className="section-head__intro" data-reveal data-reveal-delay={0.12}>
             <p>
-              Ocean, air and customs are one contract, one team and one set of documents. No handoffs
-              between providers who never speak.
+              Ocean, air and customs under one contract. No handoffs between providers who never speak.
             </p>
           </div>
         </div>
@@ -89,9 +83,8 @@ export default function Services({ onSelectService }: Props) {
                 <button
                   className="deck__trigger"
                   type="button"
-                  data-cursor="view"
-                  onClick={() => onSelectService(service.cargo)}
-                  aria-label={`${service.title} — check this lane`}
+                  onClick={onSelectService}
+                  aria-label={`${service.title}: request a quote`}
                 >
                   <span className="deck__num">{service.number}</span>
                   <span className="deck__title">{service.title}</span>
@@ -108,27 +101,23 @@ export default function Services({ onSelectService }: Props) {
                   <p>{service.body}</p>
                   <span className="deck__proof">{service.proof}</span>
                 </div>
-                <div className="deck__thumb" aria-hidden="true">
-                  <img src={service.image} alt="" loading="lazy" decoding="async" />
-                </div>
               </article>
             ))}
           </div>
 
           <div className="deck__frame" aria-hidden="true">
-            {services.map((service, index) => (
-              <figure className={`deck__image${active === index ? ' is-active' : ''}`} key={service.title}>
-                <img src={service.image} alt="" loading="lazy" decoding="async" />
-                <figcaption>
-                  <span>{service.mode}</span>
-                  <span>{service.number} / 03</span>
-                </figcaption>
-              </figure>
-            ))}
-            <div className="deck__frame-meta">
-              <span className="label label--gold">Meridian · capability</span>
-              <span className="deck__frame-line" />
-              <span className="label">Est. 1988</span>
+            <div className="deck__echo" aria-hidden="true" />
+            <div className="deck__arch">
+              {services.map((service, index) => (
+                <figure className={`deck__image${active === index ? ' is-active' : ''}`} key={service.title}>
+                  <img src={service.image} alt="" loading="lazy" decoding="async" />
+                </figure>
+              ))}
+            </div>
+            <div className="deck__caption">
+              <span className="label label--gold">Capability</span>
+              <span className="deck__caption-loc">{services[active].title}</span>
+              <span className="deck__caption-est">{services[active].number} / 03</span>
             </div>
           </div>
         </div>

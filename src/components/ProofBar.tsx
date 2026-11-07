@@ -1,7 +1,7 @@
 const stats = [
   { value: '38', label: 'Years operating' },
   { value: '140+', label: 'Countries served' },
-  { value: '99.2%', label: 'On-time clearance' },
+  { value: '99.2%', label: 'On-time delivery' },
   { value: '24/7', label: 'Route desk' },
 ];
 
