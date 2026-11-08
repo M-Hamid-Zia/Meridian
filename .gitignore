@@ -8,3 +8,4 @@ image-search/
 agent/
 skills-lock.json
 tsconfig.tsbuildinfo
+docker-compose.override.yml

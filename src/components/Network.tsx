@@ -4,6 +4,7 @@ import WorldMap from './WorldMap';
 import { gsap, prefersReducedMotion, ScrollTrigger, transitionToId } from '../lib/motion';
 import { ArrowRight } from './Icons';
 
+const HOLD = 0.15;
 const offices = ports.filter((port) => port.type === 'office');
 
 export default function Network() {
@@ -29,23 +30,24 @@ export default function Network() {
 
     const mm = gsap.matchMedia();
 
-    // Pinned scrub from tablet-wide up; below that the CSS switches the rail to native swipe.
+    // Pinned scrub at every screen width, so small screens behave like desktop.
     if (!prefersReducedMotion()) {
-      mm.add('(min-width: 940px)', () => {
+      mm.add('(min-width: 1px)', () => {
         const getDistance = () => Math.max(0, track.scrollWidth - window.innerWidth + 64);
 
         const tween = gsap.to(track, {
           x: () => -getDistance(),
-          ease: 'none',
+          // Hold still for the first stretch so the first cards sit fully in view before the slide begins.
+          ease: (p: number) => (p < HOLD ? 0 : (p - HOLD) / (1 - HOLD)),
           scrollTrigger: {
             trigger: section,
             start: 'top top',
-            end: () => `+=${getDistance() + window.innerHeight * 0.35}`,
+            end: () => `+=${getDistance() / (1 - HOLD) + window.innerHeight * 0.35}`,
             scrub: 0.8,
             pin: true,
             anticipatePin: 1,
             invalidateOnRefresh: true,
-            onUpdate: (self) => paint(self.progress),
+            onUpdate: (self) => paint(Math.max(0, (self.progress - HOLD) / (1 - HOLD))),
           },
         });
 
@@ -58,8 +60,8 @@ export default function Network() {
       });
     }
 
-    // Native swipe rail: small screens at any motion setting, and reduced motion at any width.
-    mm.add('(prefers-reduced-motion: reduce) or (max-width: 939px)', () => {
+    // Native swipe rail for reduced motion.
+    mm.add('(prefers-reduced-motion: reduce)', () => {
       const onScroll = () => {
         const max = viewport.scrollWidth - viewport.clientWidth;
         paint(max > 0 ? viewport.scrollLeft / max : 1);

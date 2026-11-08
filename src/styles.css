@@ -705,7 +705,7 @@ body::after {
 
 .menu__links a {
   display: grid;
-  grid-template-columns: 48px 1fr auto;
+  grid-template-columns: 1fr auto;
   align-items: center;
   gap: 0.75rem;
   padding: clamp(0.875rem, 2.6vh, 1.625rem) 0;
@@ -3402,8 +3402,79 @@ body.at-foot .actionbar {
   }
 }
 
-/* Native horizontal rail scroll: small screens at any motion setting, reduced motion at any width. */
-@media (max-width: 939px), (prefers-reduced-motion: reduce) {
+/* Fit the pinned stage to the screen height so every card is fully visible before the slide starts. */
+.network__fixed {
+  height: 100vh;
+  height: 100svh;
+  min-height: 0;
+  justify-content: flex-start;
+  padding-top: clamp(4.5rem, 12vh, 6.5rem);
+  padding-bottom: clamp(0.75rem, 2vh, 1.75rem);
+}
+
+.network__head {
+  margin-bottom: clamp(0.5rem, 2vh, 1.5rem);
+}
+
+.network__head h2 {
+  font-size: clamp(26px, 6.2vh, 56px);
+}
+
+.network__viewport {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+}
+
+.network__track {
+  align-items: stretch;
+}
+
+.hub {
+  min-height: 0;
+  padding: clamp(0.875rem, 2.4vh, 1.875rem);
+}
+
+.hub__name {
+  padding-top: clamp(0.25rem, 2vh, 2.5rem);
+}
+
+.hub__meta {
+  gap: clamp(0.25rem, 0.9vh, 0.625rem);
+  margin-top: clamp(0.5rem, 1.8vh, 1.5rem);
+  padding-top: clamp(0.5rem, 1.4vh, 1.125rem);
+}
+
+.hub__statement {
+  font-size: clamp(22px, 5vh, 50px);
+}
+
+.hub__copy {
+  margin-top: clamp(0.5rem, 1.5vh, 1.25rem);
+}
+
+.hub__map {
+  min-height: 0;
+}
+
+.network__foot {
+  margin-top: clamp(0.375rem, 1.2vh, 1rem);
+  padding-top: clamp(0.375rem, 1.2vh, 1rem);
+}
+
+@media (max-height: 700px) {
+  .network__head .section-head__intro {
+    display: none;
+  }
+
+  .hub__copy,
+  .hub__map-caption p {
+    display: none;
+  }
+}
+
+/* Native horizontal rail scroll: reduced motion only. */
+@media (prefers-reduced-motion: reduce) {
   .network__viewport {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
